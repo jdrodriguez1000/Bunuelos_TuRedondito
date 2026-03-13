@@ -31,3 +31,6 @@ Desarrollar una aplicación de forecasting basada en datos históricos para pred
 ## 📄 Documentación Principal
 *   [Project Charter](docs/artifacts/Project_Charter.md)
 *   [Índice Maestro](index.md)
+
+## 📜 Historial de Cambios (Log)
+- **v0.1.0 (2026-03-13):** Inicialización de infraestructura, CI/CD y reglas de gobernanza.
