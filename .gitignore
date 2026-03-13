@@ -26,6 +26,7 @@ yarn-error.log*
 # Ignorar los datos reales, DVC se encarga de ellos
 /data/*
 !/data/.gitkeep
+
 # Excluir cache de DVC
 .dvc/cache/
 .dvc/tmp/
