@@ -1,0 +1,23 @@
+# Core
+pandas
+numpy
+skforecast
+scikit-learn
+
+# Infrastructure & Cloud
+supabase
+python-dotenv
+pyyaml
+
+# Data Versioning (DVC)
+dvc
+dvc-s3
+boto3
+
+# Quality & Testing
+pytest
+pytest-json-report
+
+# Visualization (Optional for local analysis)
+matplotlib
+seaborn

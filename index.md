@@ -1,0 +1,98 @@
+# [INDEX-MAESTRO] - Enrutador Central de Documentación
+
+Este documento es el enrutador principal para los Agentes y Desarrolladores del proyecto **Bunuelos_TuRedondito**. **Lee este archivo primero** para orientarte de acuerdo a la fase que deseas trabajar.
+
+---
+
+## ⚡ MANDATO CRÍTICO DE OPERACIÓN
+**Antes de iniciar cualquier fase, tarea o actividad, es OBLIGATORIO:**
+1.  **Leer el Log de Lecciones Aprendidas:** [[LOG]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/lessons_learned/lessons_learned_log.md) para evitar repetir errores pasados e integrar los éxitos.
+2.  **Leer TODAS las Reglas del Proyecto:** Listadas abajo en la sección de Gobernanza Transversal.
+
+---
+
+## 🚦 Gobernanza Transversal (Reglas Maestro)
+Todo agente debe respetar estas reglas antes de iniciar cualquier fase:
+*   **Reglas Globales:** [[RULE-GLOBAL]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/global_rules.md) (Protocolo de Cambio y Comunicación)
+*   **Reglas Técnicas:** [[RULE-TECH]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/technical_rules.md) (Estándares de Procesamiento y ML)
+*   **Reglas de Repositorio:** [[RULE-GIT]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/github_rules.md) (GitFlow y Seguridad)
+*   **Reglas QA:** [[RULE-QA]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/testing_rules.md) (Jerarquía de Pruebas y Reportes)
+*   **Reglas Estratégicas:** [[RULE-STRAT]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/strategic_rules.md) (Objetivos y Alineación)
+*   **Reglas de Negocio:** [[RULE-BUSINESS]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/business_rules.md) (Reglas de Oro del Dominio)
+*   **Control de Cambios:** [[RULE-CHANGE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/change_control_rules.md) (Gestión de Baselines)
+*   **Comunicación:** [[RULE-COMM]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/communication_rules.md) (Estándar Wow Factor)
+*   **Lecciones Aprendidas:** [[RULE-LEARN]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/lessons_learned_rules.md) (Gestión del Conocimiento)
+
+---
+
+## 📜 Cimientos Estratégicos (Nivel Alto)
+- 📊 **Reportes Ejecutivos**: [[LATEST]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/executive/phase_01_01_executive_latest.md) | [[HISTORY]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/executive/history/)
+- 🧭 **Project Charter**: [[VER DOCUMENTO]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/artifacts/Project_Charter.md) (Visión, Objetivos y Roadmap)
+*   **Plan General:** [[PLAN-MASTER]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/artifacts/project_plan.md) (Cronograma y Estados de Fase)
+
+---
+
+## 🏗️ FASE 01: Kickoff and Implementation | (IN PROGRESS)
+
+### F01-01: Infrastructure and Documentation (COMPLETED)
+*   **Descripción:** Configuración del entorno maestro, protocolos de agente y estructura física del proyecto.
+*   **Documentación:**
+    *   Requerimientos: [[REQ-F01-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_01_requirements.md)
+    *   Especificación: [[SPEC-F01-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_01_spec.md)
+    *   Plan de Imp.: [[IMPL-F01-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_01_impl_plan.md)
+    *   Capa Agente: [RULE](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/f01_01_rules.md) | [SKILL](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/f01_01_pm/SKILL.md) | [WORK](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/f01_01_workflow.md)
+
+### F01-02: Database Connection (PENDING)
+*   **Descripción:** Conexión segura con Supabase y validación de infraestructura.
+*   **Documentación:**
+    *   Requerimientos: [[REQ-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_02_requirements.md)
+    *   Especificación: [[SPEC-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_02_spec.md)
+    *   Plan de Imp.: [[IMPL-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_02_impl_plan.md)
+
+### F01-03: Data Contract Creation (PENDING)
+*   **Descripción:** Definición y validación de esquemas técnicos.
+*   **Documentación:**
+    *   Requerimientos: [[REQ-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_03_requirements.md)
+    *   Especificación: [[SPEC-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_03_spec.md)
+    *   Plan de Imp.: [[IMPL-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_03_impl_plan.md)
+
+---
+
+## 🏗️ FASE 02: Minimum Viable Product (MVP) - Endogenous Variables | (PENDING)
+
+### F02-01: Data Contract Validation (PENDING)
+*   **Descripción:** Implementación del Guardrail de Calidad y sistema de activación selectiva de fuentes para blindar el pipeline.
+*   **Documentación:**
+    *   Requerimientos: [[REQ-F02-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f02_01_requirements.md)
+    *   Especificación: [[SPEC-F02-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f02_01_spec.md)
+    *   Plan de Imp.: [[IMPL-F02-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f02_01_impl_plan.md)
+
+### F02-02: Data Loading (PENDING)
+*   **Descripción:** Ingesta distribuida y segura de las fuentes maestras de datos desde Supabase.
+*   **Documentación:**
+    *   Requerimientos: [[REQ-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f02_02_requirements.md)
+    *   Especificación: [[SPEC-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f02_02_spec.md)
+    *   Plan de Imp.: [[IMPL-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f02_02_impl_plan.md)
+
+---
+
+## 🏗️ FASE 03: Robustness - Calendar | (PENDING)
+### F03-01: Agregaciones Temporales
+*   **Descripción:** Integración de festivos y ciclos específicos.
+
+---
+
+## 🔮 FASES POSTERIORES (Discovery)
+*   **Fase 04**: Controllable Variables (Commercial & Marketing).
+*   **Fase 05**: External Non-Controllable Variables (Macro & Weather).
+*   **Fase 06**: "Black Swan" Events (COVID-19 handling).
+*   **Fase 07**: Simulation & "What-If" Scenarios.
+
+---
+
+## 🐚 Herramientas de Agente (Transversales)
+*   **Lecciones Aprendidas:** [[RULE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/lessons_learned_rules.md) | [[SKILL]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/lessons_learned/SKILL.md) | [[WORK]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/lessons_learned_workflow.md) | [[LOG]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/lessons_learned/lessons_learned_log.md)
+*   **Gestión de Cambios:** [[RULE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/change_control_rules.md) | [[SKILL]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/change_management/SKILL.md) | [[WORK]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/change_control_workflow.md)
+*   **Comunicación Estratégica:** [[RULE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/communication_rules.md) | [[SKILL]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/strategic_communication/SKILL.md) | [[WORK]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/executive_report_workflow.md)
+*   **Integración GitHub:** [[RULE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/github_rules.md) | [[SKILL]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/github_integration/SKILL.md) | [[WORK]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/github_integration_workflow.md) | [[CI-PIPELINE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.github/workflows/ci_quality_gate.yml)
+*   **Calidad y Testing:** [[RULE]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/testing_rules.md) | [[SKILL]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/quality_assurance/SKILL.md) | [[WORK]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/test_pipeline.md) | [[REPORTS]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/tests/reports/)
