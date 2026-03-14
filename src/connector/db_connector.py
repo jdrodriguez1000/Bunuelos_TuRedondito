@@ -49,22 +49,28 @@ class DBConnector:
         load_dotenv()
         
         # 1. Configuración de Supabase
-        sb_config = self._config['database']['supabase']
-        url = self._get_env_var(['database', 'supabase', 'env_url'])
-        key = self._get_env_var(['database', 'supabase', 'env_key'])
-        service_key = self._get_env_var(['database', 'supabase', 'env_service_key'])
+        try:
+            url = self._get_env_var(['database', 'supabase', 'env_url'])
+            key = self._get_env_var(['database', 'supabase', 'env_key'])
+            service_key = self._get_env_var(['database', 'supabase', 'env_service_key'])
 
-        self._client = create_client(url, key)
-        self._service_client = create_client(url, service_key)
+            self._client = create_client(url, key)
+            self._service_client = create_client(url, service_key)
+        except (KeyError, ValueError) as e:
+            print(f"⚠️ Aviso: Configuración de Supabase incompleta: {str(e)}")
 
-        # 2. Configuración S3 (Para uso futuro en DVC/Boto3) [REQ-S3-01]
-        self.s3_config = {
-            "endpoint": self._get_env_var(['database', 'supabase', 's3', 'env_endpoint']),
-            "access_key": self._get_env_var(['database', 'supabase', 's3', 'env_access_key']),
-            "secret_key": self._get_env_var(['database', 'supabase', 's3', 'env_secret_key']),
-            "region": self._get_env_var(['database', 'supabase', 's3', 'env_region']),
-            "bucket": self._get_env_var(['database', 'supabase', 's3', 'env_bucket'])
-        }
+        # 2. Configuración S3 (Opcional/Lazy) [REQ-S3-01]
+        self.s3_config = {}
+        try:
+            self.s3_config = {
+                "endpoint": self._get_env_var(['database', 'supabase', 's3', 'env_endpoint']),
+                "access_key": self._get_env_var(['database', 'supabase', 's3', 'env_access_key']),
+                "secret_key": self._get_env_var(['database', 'supabase', 's3', 'env_secret_key']),
+                "region": self._get_env_var(['database', 'supabase', 's3', 'env_region']),
+                "bucket": self._get_env_var(['database', 'supabase', 's3', 'env_bucket'])
+            }
+        except (KeyError, ValueError) as e:
+            print(f"⚠️ Aviso: Configuración S3 incompleta o ausente: {str(e)}")
 
     def get_client(self) -> Client:
         """Retorna el cliente estándar con RLS activo [REQ-ARC-01]."""

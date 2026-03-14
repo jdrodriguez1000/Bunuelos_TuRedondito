@@ -34,14 +34,27 @@ tables:
   usr_ventas: "usr_ventas"
   usr_inventario_detallado: "usr_inventario_detallado"
   usr_clima_diario: "usr_clima_diario"
+  # Tablas de Sistema (Auditoría)
+  sys_validation_contract: "sys_validation_contract"
+  sys_pipeline_execution: "sys_pipeline_execution"
 
 # GOBERNANZA DEL CONTRATO
 contract:
   mandatory_source: "inventory"
   target_variable: "demanda_teorica_total"
+  path: "contracts/contracts/data_contract.yaml"
+
+# PARÁMETROS DE VALIDACIÓN (Etapa 2.1)
+validation:
+  mode: "auto" # auto, full, incremental
+  sample_size: null # null para validar todo el dataframe
+  thresholds:
+    max_nat_increase_pct: 0.05 # Máximo 5% de incremento en NaT permitido en fechas
+  fingerprint:
+    algorithm: "sha256"
 
 # ------------------------------------------------------------------------------
-# 3. REPORTING
+# 3. REPORTING & CLOUD TICKETS
 # ------------------------------------------------------------------------------
 paths:
   reports:
@@ -49,3 +62,11 @@ paths:
       root: "outputs/reports/stage_connector"
       latest: "outputs/reports/stage_connector/connector_report.json"
       history: "outputs/reports/stage_connector/history"
+    stage_load:
+      root: "outputs/reports/stage_load"
+      latest: "outputs/reports/stage_load/load_report.json"
+      history: "outputs/reports/stage_load/history"
+  
+  cloud_storage:
+    s3_tickets_prefix: "pipeline_tickets/stage_load"
+    s3_ticket_name: "load_report.json"

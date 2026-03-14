@@ -1,14 +1,13 @@
 [
     {
         "type": "Unitaria",
-        "status": "PASSED",
-        "timestamp": "2026-03-14T16:58:56.567420",
+        "status": "FAILED",
+        "timestamp": "2026-03-14T16:58:17.174233",
         "details": "Resultados de la suite Unitaria",
         "summary": {
             "total": 19,
             "passed": 18,
-            "failed": 0,
-            "skipped": 1
+            "failed": 1
         },
         "tests": [
             {
@@ -111,13 +110,12 @@
     {
         "type": "Integraci\u00f3n",
         "status": "PASSED",
-        "timestamp": "2026-03-14T16:58:56.567420",
+        "timestamp": "2026-03-14T16:58:17.174233",
         "details": "Resultados de la suite Integraci\u00f3n",
         "summary": {
             "total": 3,
             "passed": 3,
-            "failed": 0,
-            "skipped": 0
+            "failed": 0
         },
         "tests": [
             {
