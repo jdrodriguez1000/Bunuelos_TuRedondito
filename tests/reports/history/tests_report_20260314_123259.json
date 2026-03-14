@@ -2,18 +2,13 @@
   {
     "type": "Ejecuci\u00f3n Autom\u00e1tica",
     "status": "PASSED",
-    "timestamp": "2026-03-14T12:36:48.285463",
+    "timestamp": "2026-03-14T12:32:59.144573",
     "summary": {
-      "passed": 15,
-      "skipped": 1,
-      "total": 16,
-      "collected": 16
+      "passed": 8,
+      "total": 8,
+      "collected": 8
     },
     "tests": [
-      {
-        "name": "tests/integration/test_env_presence.py::test_supabase_env_vars_presence",
-        "status": "PASSED"
-      },
       {
         "name": "tests/unit/test_data_contract.py::test_contract_syntax",
         "status": "PASSED"
@@ -44,34 +39,6 @@
       },
       {
         "name": "tests/unit/test_data_contract.py::test_contract_db_table_mapping",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_db_connector.py::test_singleton_identity",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_db_connector.py::test_clients_types",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_db_connector.py::test_real_handshake",
-        "status": "SKIPPED"
-      },
-      {
-        "name": "tests/unit/test_db_connector.py::test_s3_config_loading",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_smoke.py::test_python_version",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_smoke.py::test_project_structure",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_smoke.py::test_requirements_installed",
         "status": "PASSED"
       }
     ]
