@@ -2,11 +2,11 @@
   {
     "type": "Ejecuci\u00f3n Autom\u00e1tica",
     "status": "PASSED",
-    "timestamp": "2026-03-14T08:43:05.647123",
+    "timestamp": "2026-03-14T08:34:19.018894",
     "summary": {
-      "passed": 8,
-      "total": 8,
-      "collected": 8
+      "passed": 7,
+      "total": 7,
+      "collected": 7
     },
     "tests": [
       {
@@ -23,10 +23,6 @@
       },
       {
         "name": "tests/unit/test_db_connector.py::test_real_handshake",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/unit/test_db_connector.py::test_s3_config_loading",
         "status": "PASSED"
       },
       {

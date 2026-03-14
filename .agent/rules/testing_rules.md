@@ -2,7 +2,7 @@
 
 ## 1. Identificación y Control (Metadata)
 *   **Título:** Reglas de Testing y Aseguramiento de Calidad
-*   **Versión:** v1.1.0
+*   **Versión:** v1.2.0
 *   **Estado:** Oficial / Aprobado
 *   **Trazabilidad:** Alineado con el Project Charter de **Bunuelos_TuRedondito**.
 *   **Objetivo:** Garantizar la integridad del código y la exactitud de los pronósticos mediante validaciones jerárquicas.
@@ -19,8 +19,10 @@
     - `unit/`: Lógica pura, transformaciones y cálculos métricos (MAPE, MSE).
     - `integration/`: Validación de conectores (Supabase, S3) y carga de variables de entorno.
     - `functional/`: Flujos E2E de forecasting y generación de proyecciones oficiales.
+    - `data/`: Pruebas de integridad de datasets versionados por DVC.
     - `reports/`: Almacenamiento de resultados y auditoría técnica.
 - **Fail-Fast**: Si falla una prueba unitaria, la suite de integración y funcional **NO** se ejecuta.
+- **Integridad DVC**: En etapas que involucren datasets, es MANDATORIO verificar que `dvc status` no reporte discrepancias antes de ejecutar las pruebas funcionales.
 
 ## 🧪 4. Estándares de Implementación
 - **Framework**: Uso mandatorio de `pytest`.

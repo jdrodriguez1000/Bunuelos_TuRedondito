@@ -14,6 +14,12 @@ Elimina cachés y residuos para garantizar una ejecución pura.
 ```powershell
 if (Test-Path .pytest_cache) { Remove-Item -Recurse -Force .pytest_cache }
 if (Test-Path tests/reports/tests_report_raw.json) { Remove-Item tests/reports/tests_report_raw.json }
+
+# 1.1 Verificación de Integridad de Datos (DVC)
+if (Get-Command dvc -ErrorAction SilentlyContinue) {
+    Write-Host "Verificando sincronización de datos con DVC..."
+    dvc status
+}
 ```
 
 ### 2. Ejecución Jerárquica e Informe Crudo

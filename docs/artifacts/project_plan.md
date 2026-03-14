@@ -22,7 +22,7 @@ This document outlines the execution roadmap for the demand forecasting system o
 ## 🏗️ Detailed Phase 01: Kickoff and Implementation (IN PROGRESS)
 **Objective:** Establish the project's technical skeleton, environment setup, and secure the data bridge with Supabase.
 
-### Etapa 1.1: Infraestructura y Gobernanza (EN PROCESO)
+### Etapa 1.1: Infraestructura y Gobernanza (COMPLETADA)
 - [x] Formalización de SDD: [REQ](../reqs/f01_01_requirements.md), [SPEC](../specs/f01_01_spec.md), [IMPL](../plans/f01_01_impl_plan.md).
 - [x] Creación del Project Charter ([Project_Charter.md](Project_Charter.md)).
 - [x] Definición de Reglas Globales y de Gobernanza ([.clinerules](../../.clinerules)).
@@ -33,17 +33,22 @@ This document outlines the execution roadmap for the demand forecasting system o
 - [x] Estructura de Calidad (Carpeta `tests/` y Smoke Tests).
 - [x] **Integración GitHub & CI**: Configuración de `ci_quality_gate.yml` y protección de rama `main`.
 - [x] **Automatización de Releases**: Implementación de Google Release Please (`release_please.yml`).
-- [ ] **Lecciones Aprendidas**: Sistematización de hallazgos técnicos y de proceso.
-- [ ] **Resumen Ejecutivo (Phase 01)**: Generación de reporte Wow Factor de cierre de infraestructura.
+- [x] **Lecciones Aprendidas**: Sistematización de hallazgos técnicos y de proceso.
+- [x] **Resumen Ejecutivo (Phase 01)**: Generación de reporte Wow Factor de cierre de infraestructura.
 
-### Stage 1.2: Database Connection (PENDING)
-- [ ] Refinement of SDD Documentation: [PRD](../reqs/f01_02_requirements.md), [SPEC](../specs/f01_02_spec.md).
-- [ ] Secure environment configuration (`.env`).
-- [ ] Implementation of `DBConnector` (Singleton Pattern).
-- [ ] Validation of Pipeline Quality (Unit & Integration Tests).
-- [ ] Connection test success and latency validation.
+### Stage 1.2: Database Connection (COMPLETED)
+- [x] Refinement of SDD Documentation: [PRD](../reqs/f01_02_requirements.md)
+- [x] Refinement of SDD Documentation: [SPEC](../specs/f01_02_spec.md).
+- [x] Implementation Plan: [IMPL](../plans/f01_02_impl_plan.md).
+- [x] **T-1.2-01**: Setup del Entorno Seguro (`.env.example` y validación de `.gitignore`).
+- [x] **T-1.2-02**: Core Implementation: `DBConnector` (Singleton Guard Pattern) & `config.yaml`.
+- [x] **T-1.2-03**: Proxy de Autenticación & S3: Implementación del Dual-Client (Std/Admin + S3 Config).
+- [x] **T-1.2-04**: Spike de Desempeño: Medición de latencia y reporte `connector_report.json` (Doble Persistencia).
+- [x] **T-1.2-05**: Suite de Pruebas Core: Unit & Integration Tests con QA Report.
+- [x] **T-1.2-06**: Lecciones Aprendidas: Sistematización de hallazgos de conectividad y seguridad.
+- [x] **T-1.2-07**: Resumen Ejecutivo (Stage 1.2): Generación de reporte de cierre "Wow Factor".
 
-### Stage 1.3: Data Contract Creation (PENDING)
+### Stage 1.3: Data Contract Creation (IN PROGRESS)
 - [ ] Refinement of SDD Documentation: [PRD](../reqs/f01_03_requirements.md), [SPEC](../specs/f01_03_spec.md).
 - [ ] Setup of `config.yaml` for 9 data sources.
 - [ ] Development of `Introspector` and `StatsEngine`.
