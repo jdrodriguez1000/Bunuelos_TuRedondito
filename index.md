@@ -42,12 +42,12 @@ Todo agente debe respetar estas reglas antes de iniciar cualquier fase:
     *   Plan de Imp.: [[IMPL-F01-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_01_impl_plan.md)
     *   Capa Agente: [RULE](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/f01_01_rules.md) | [SKILL](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/skills/f01_01_pm/SKILL.md) | [WORK](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/workflows/f01_01_workflow.md)
 
-### F01-02: Database Connection (PENDING)
+### F01-02: Database Connection (COMPLETED)
 *   **Descripción:** Conexión segura con Supabase y validación de infraestructura.
 *   **Documentación:**
     *   Requerimientos: [[REQ-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_02_requirements.md)
-    *   Especificación: [[SPEC-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_02_spec.md)
-    *   Plan de Imp.: [[IMPL-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_02_impl_plan.md)
+    *   Especificación: [[SPEC-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_02_spec.md) (COMPLETED)
+    *   Plan de Imp.: [[IMPL-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_02_impl_plan.md) (COMPLETED)
 
 ### F01-03: Data Contract Creation (PENDING)
 *   **Descripción:** Definición y validación de esquemas técnicos.

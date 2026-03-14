@@ -1,0 +1,45 @@
+# ------------------------------------------------------------------------------
+# PROYECTO: Bunuelos_TuRedondito
+# VERSION: 1.0.0
+# DESCRIPCIÓN: Fuente Única de Verdad (SSoT) para el sistema de forecasting.
+# ------------------------------------------------------------------------------
+
+project:
+  name: "Bunuelos_TuRedondito"
+  version: "1.0.0"
+
+# ------------------------------------------------------------------------------
+# 1. INFRAESTRUCTURA (STORAGE & CLOUD)
+# ------------------------------------------------------------------------------
+database:
+  supabase:
+    env_url: "SUPABASE_URL"
+    env_key: "SUPABASE_KEY"
+    env_service_key: "SUPABASE_SERVICE_ROLE_KEY"
+    s3:
+      env_endpoint: "SUPABASE_S3_ENDPOINT"
+      env_access_key: "SUPABASE_S3_ACCESS_KEY_ID"
+      env_secret_key: "SUPABASE_S3_SECRET_ACCESS_KEY"
+      env_region: "SUPABASE_S3_REGION"
+      env_bucket: "SUPABASE_S3_BUCKET"
+
+network:
+  timeout: 10
+  latency_threshold_ms: 2000
+
+# ------------------------------------------------------------------------------
+# 2. DATA SOURCES & SEMANTIC CONTRACTS
+# ------------------------------------------------------------------------------
+tables:
+  usr_ventas: "usr_ventas"
+  # Agregar más tablas conforme se avance en la Etapa 1.3
+
+# ------------------------------------------------------------------------------
+# 3. REPORTING
+# ------------------------------------------------------------------------------
+paths:
+  reports:
+    stage_connector:
+      root: "outputs/reports/stage_connector"
+      latest: "outputs/reports/stage_connector/connector_report.json"
+      history: "outputs/reports/stage_connector/history"
