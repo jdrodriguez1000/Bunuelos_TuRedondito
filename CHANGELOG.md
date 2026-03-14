@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.2.0...Bunuelos_TuRedondito-v0.3.0) (2026-03-14)
+
+
+### Features
+
+* implement db connector with s3 and double persistence reporting ([8c7b422](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/8c7b422359393ae9ebb13aec62b9231c3b82b647))
+* implement db connector with s3 and double persistence reporting ([c6ac525](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/c6ac525844a4a4c86e2386cb6653b2bd083927c2))
+
+
+### Bug Fixes
+
+* **test:** mock environment variables in unit tests to fix CI failure ([98fc8f4](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/98fc8f46378a8eef8f6070c7aede40f5bab79686))
+
 ## [0.2.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.1.0...Bunuelos_TuRedondito-v0.2.0) (2026-03-13)
 
 
