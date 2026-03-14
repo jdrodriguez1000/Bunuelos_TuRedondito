@@ -60,7 +60,7 @@ data_sources:
       updated_at: "datetime"
 
   - name: "weather"
-    enabled: true
+    enabled: false
     db_table: "usr_clima_diario"
     primary_key: "fecha"
     description: "Variables exógenas climáticas y eventos macro de influencia en la demanda."

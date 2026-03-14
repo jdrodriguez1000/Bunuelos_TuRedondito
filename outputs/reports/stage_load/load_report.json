@@ -1,0 +1,430 @@
+{
+    "execution_id": "exec_20260314_165419",
+    "timestamp": "2026-03-14T16:54:19.928881",
+    "status": "SUCCESS",
+    "load_type": "NO_NEW_DATA",
+    "tables": {
+        "inventory": {
+            "table": "usr_inventario_detallado",
+            "timestamp": "2026-03-14T16:54:21.358566",
+            "status": "VALID",
+            "row_count": 1000,
+            "errors": [],
+            "columns": {
+                "fecha": {
+                    "status": "VALID",
+                    "type": "datetime",
+                    "stats": {
+                        "min": "2017-01-01 00:00:00",
+                        "max": "2019-09-27 00:00:00",
+                        "nat_increase": 0
+                    }
+                },
+                "kit_inicial_bodega": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 9475.952,
+                        "std": 4923.0357019036755,
+                        "min": 0.0,
+                        "max": 20019.0,
+                        "q1": 5301.5,
+                        "median": 9409.0,
+                        "q3": 13607.5
+                    },
+                    "outliers": {
+                        "count": 0,
+                        "lower_bound": -7157.5,
+                        "upper_bound": 26066.5
+                    }
+                },
+                "lbs_iniciales_bodega": {
+                    "status": "VALID",
+                    "type": "float",
+                    "stats": {
+                        "mean": 189.51904,
+                        "std": 98.46071403807352,
+                        "min": 0.0,
+                        "max": 400.38,
+                        "q1": 106.03,
+                        "median": 188.18,
+                        "q3": 272.15000000000003
+                    },
+                    "outliers": {
+                        "count": 0,
+                        "lower_bound": -143.15000000000006,
+                        "upper_bound": 521.3300000000002
+                    }
+                },
+                "kit_recibido": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 294.9,
+                        "std": 1139.6129639959822,
+                        "min": 0.0,
+                        "max": 8400.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 0.0
+                    },
+                    "outliers": {
+                        "count": 65,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.0
+                    }
+                },
+                "lbs_recibidas": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 5.898,
+                        "std": 22.792259279919648,
+                        "min": 0.0,
+                        "max": 168.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 0.0
+                    },
+                    "outliers": {
+                        "count": 65,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.0
+                    }
+                },
+                "lbs_totales_disponibles": {
+                    "status": "VALID",
+                    "type": "float",
+                    "stats": {
+                        "mean": 195.41704,
+                        "std": 98.65441962400746,
+                        "min": 0.0,
+                        "max": 408.14,
+                        "q1": 111.76,
+                        "median": 194.36,
+                        "q3": 278.26
+                    },
+                    "outliers": {
+                        "count": 0,
+                        "lower_bound": -137.99,
+                        "upper_bound": 528.01
+                    }
+                },
+                "bunuelos_preparados": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 281.404,
+                        "std": 90.92185418021108,
+                        "min": 0.0,
+                        "max": 698.0,
+                        "q1": 211.0,
+                        "median": 253.0,
+                        "q3": 341.0
+                    },
+                    "outliers": {
+                        "count": 18,
+                        "lower_bound": 16.0,
+                        "upper_bound": 536.0
+                    }
+                },
+                "bunuelos_desperdiciados": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 5.347,
+                        "std": 7.684767182331982,
+                        "min": 0.0,
+                        "max": 41.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 9.25
+                    },
+                    "outliers": {
+                        "count": 37,
+                        "lower_bound": -13.875,
+                        "upper_bound": 23.125
+                    }
+                },
+                "unidades_agotadas": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 7.51,
+                        "std": 21.13600318486517,
+                        "min": 0.0,
+                        "max": 386.0,
+                        "q1": 0.0,
+                        "median": 1.0,
+                        "q3": 12.0
+                    },
+                    "outliers": {
+                        "count": 19,
+                        "lower_bound": -18.0,
+                        "upper_bound": 30.0
+                    }
+                },
+                "ventas_reales_totales": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 276.057,
+                        "std": 88.53293077059423,
+                        "min": 0.0,
+                        "max": 667.0,
+                        "q1": 207.0,
+                        "median": 250.0,
+                        "q3": 334.0
+                    },
+                    "outliers": {
+                        "count": 20,
+                        "lower_bound": 16.5,
+                        "upper_bound": 524.5
+                    }
+                },
+                "ventas_reales_pagas": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 269.277,
+                        "std": 97.09647777853219,
+                        "min": 0.0,
+                        "max": 667.0,
+                        "q1": 203.0,
+                        "median": 250.0,
+                        "q3": 334.0
+                    },
+                    "outliers": {
+                        "count": 19,
+                        "lower_bound": 6.5,
+                        "upper_bound": 530.5
+                    }
+                },
+                "ventas_reales_bonificadas": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 6.78,
+                        "std": 25.644243549522518,
+                        "min": 0.0,
+                        "max": 130.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 0.0
+                    },
+                    "outliers": {
+                        "count": 67,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.0
+                    }
+                },
+                "kit_final_bodega": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 9489.448,
+                        "std": 4923.763668979652,
+                        "min": 0.0,
+                        "max": 20019.0,
+                        "q1": 5309.5,
+                        "median": 9420.0,
+                        "q3": 13641.0
+                    },
+                    "outliers": {
+                        "count": 0,
+                        "lower_bound": -7187.75,
+                        "upper_bound": 26138.25
+                    }
+                },
+                "lbs_finales_bodega": {
+                    "status": "VALID",
+                    "type": "float",
+                    "stats": {
+                        "mean": 189.78896000000003,
+                        "std": 98.47527337959305,
+                        "min": 0.0,
+                        "max": 400.38,
+                        "q1": 106.19,
+                        "median": 188.4,
+                        "q3": 272.82000000000005
+                    },
+                    "outliers": {
+                        "count": 0,
+                        "lower_bound": -143.75500000000008,
+                        "upper_bound": 522.7650000000001
+                    }
+                },
+                "demanda_teorica_total": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 283.567,
+                        "std": 88.3637123295341,
+                        "min": 169.0,
+                        "max": 676.0,
+                        "q1": 212.0,
+                        "median": 256.5,
+                        "q3": 341.0
+                    },
+                    "outliers": {
+                        "count": 18,
+                        "lower_bound": 18.5,
+                        "upper_bound": 534.5
+                    }
+                },
+                "created_at": {
+                    "status": "VALID",
+                    "type": "datetime",
+                    "stats": {
+                        "min": "2026-03-13 20:56:09.056192+00:00",
+                        "max": "2026-03-13 20:56:09.478191+00:00",
+                        "nat_increase": 0
+                    }
+                },
+                "updated_at": {
+                    "status": "VALID",
+                    "type": "datetime",
+                    "stats": {
+                        "min": "2026-03-13 20:56:09.056192+00:00",
+                        "max": "2026-03-13 20:56:09.478191+00:00",
+                        "nat_increase": 0
+                    }
+                }
+            },
+            "semantic_hash": "12d6d236092d7195e183087738f51f541f4117a5ad75cccd33c72e53072da68d"
+        },
+        "sales": {
+            "table": "usr_ventas",
+            "timestamp": "2026-03-14T16:54:21.617614",
+            "status": "VALID",
+            "row_count": 1000,
+            "errors": [],
+            "columns": {
+                "fecha": {
+                    "status": "VALID",
+                    "type": "datetime",
+                    "stats": {
+                        "min": "2017-01-01 00:00:00",
+                        "max": "2019-09-27 00:00:00",
+                        "nat_increase": 0
+                    }
+                },
+                "unidades_totales": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 283.567,
+                        "std": 88.3637123295341,
+                        "min": 169.0,
+                        "max": 676.0,
+                        "q1": 212.0,
+                        "median": 256.5,
+                        "q3": 341.0
+                    },
+                    "outliers": {
+                        "count": 18,
+                        "lower_bound": 18.5,
+                        "upper_bound": 534.5
+                    }
+                },
+                "unidades_pagas": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 276.646,
+                        "std": 97.43285814265046,
+                        "min": 88.0,
+                        "max": 676.0,
+                        "q1": 208.0,
+                        "median": 256.0,
+                        "q3": 341.0
+                    },
+                    "outliers": {
+                        "count": 18,
+                        "lower_bound": 8.5,
+                        "upper_bound": 540.5
+                    }
+                },
+                "unidades_bonificadas": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 6.921,
+                        "std": 26.15501565367231,
+                        "min": 0.0,
+                        "max": 130.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 0.0
+                    },
+                    "outliers": {
+                        "count": 66,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.0
+                    }
+                },
+                "es_promocion": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 0.066,
+                        "std": 0.24840633185509928,
+                        "min": 0.0,
+                        "max": 1.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 0.0
+                    },
+                    "outliers": {
+                        "count": 66,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.0
+                    }
+                },
+                "ads_activos": {
+                    "status": "VALID",
+                    "type": "int",
+                    "stats": {
+                        "mean": 0.0,
+                        "std": 0.0,
+                        "min": 0.0,
+                        "max": 0.0,
+                        "q1": 0.0,
+                        "median": 0.0,
+                        "q3": 0.0
+                    },
+                    "outliers": {
+                        "count": 0,
+                        "lower_bound": 0.0,
+                        "upper_bound": 0.0
+                    }
+                },
+                "created_at": {
+                    "status": "VALID",
+                    "type": "datetime",
+                    "stats": {
+                        "min": "2026-03-13 20:56:06.735770+00:00",
+                        "max": "2026-03-13 20:56:07.175479+00:00",
+                        "nat_increase": 0
+                    }
+                },
+                "updated_at": {
+                    "status": "VALID",
+                    "type": "datetime",
+                    "stats": {
+                        "min": "2026-03-13 20:56:06.735770+00:00",
+                        "max": "2026-03-13 20:56:07.175479+00:00",
+                        "nat_increase": 0
+                    }
+                }
+            },
+            "semantic_hash": "1ab8097812d778f40d0dc1052a87765574837c8b6ff699910e4cdfc1269f945e"
+        }
+    },
+    "summary": {
+        "total": 2,
+        "valid": 2,
+        "invalid": 0
+    },
+    "error_msg": null
+}
