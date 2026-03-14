@@ -22,16 +22,19 @@ This document outlines the execution roadmap for the demand forecasting system o
 ## 🏗️ Detailed Phase 01: Kickoff and Implementation (IN PROGRESS)
 **Objective:** Establish the project's technical skeleton, environment setup, and secure the data bridge with Supabase.
 
-### Stage 1.1: Infrastructure and Documentation (COMPLETED)
-- [x] Formalization of SDD: [REQ](../reqs/f01_01_requirements.md), [SPEC](../specs/f01_01_spec.md), [IMPL](../plans/f01_01_impl_plan.md).
-- [x] Creation of the Project Charter ([Project_Charter.md](Project_Charter.md)).
-- [x] Definition of Project Rules ([.clinerules](../../.clinerules)).
-- [x] Setup of the Master Index ([index.md](../../index.md)).
-- [x] Creation of the Project Plan.
-- [x] Setup of Virtual Environment (Python 3.12+).
-- [x] Creation of `requirements.txt` and dependency installation.
-- [x] Setup of Governance (Rules, Skills, Workflows).
-- [x] Creation of Testing Structure (`tests/unit`, `tests/integration`, etc.).
+### Etapa 1.1: Infraestructura y Gobernanza (EN PROCESO)
+- [x] Formalización de SDD: [REQ](../reqs/f01_01_requirements.md), [SPEC](../specs/f01_01_spec.md), [IMPL](../plans/f01_01_impl_plan.md).
+- [x] Creación del Project Charter ([Project_Charter.md](Project_Charter.md)).
+- [x] Definición de Reglas Globales y de Gobernanza ([.clinerules](../../.clinerules)).
+- [x] Configuración del Índice Maestro ([index.md](../../index.md)).
+- [x] Configuración de Entorno Virtual (Python 3.12+).
+- [x] Creación de `requirements.txt` e instalación de dependencias.
+- [x] Setup de Gobernanza (Reglas Técnicas, Skills, Workflows).
+- [x] Estructura de Calidad (Carpeta `tests/` y Smoke Tests).
+- [x] **Integración GitHub & CI**: Configuración de `ci_quality_gate.yml` y protección de rama `main`.
+- [x] **Automatización de Releases**: Implementación de Google Release Please (`release_please.yml`).
+- [ ] **Lecciones Aprendidas**: Sistematización de hallazgos técnicos y de proceso.
+- [ ] **Resumen Ejecutivo (Phase 01)**: Generación de reporte Wow Factor de cierre de infraestructura.
 
 ### Stage 1.2: Database Connection (PENDING)
 - [ ] Refinement of SDD Documentation: [PRD](../reqs/f01_02_requirements.md), [SPEC](../specs/f01_02_spec.md).

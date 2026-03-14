@@ -8,6 +8,8 @@ Estas reglas aplican dogmáticamente a **TODOS** los módulos, agentes, habilida
 - **C1.0 (Mandato del Índice):** Es OBLIGATORIO que la primera acción del agente en cada sesión sea leer el archivo `file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/index.md`. No se permite ninguna acción técnica sin haber validado el estado actual de la fase en el índice. El incumplimiento de esta regla invalida cualquier propuesta posterior.
 - **C1.1 (Carga Selectiva):** No cargues jamás todas las especificaciones de forma indiscriminada. Una vez leído el índice, carga en memoria únicamente los archivos específicos del módulo, fase o etapa en el que vas a trabajar.
 - **C1.2 (Evitar Ruido):** Si estás trabajando en un módulo específico (ej. "Data Contract"), ignora reglas o lógica de otros módulos (ej. "ML Training") a menos que haya una dependencia explícita.
+- **C1.3 (Autorización Explícita de Archivos):** NUNCA escribas un documento o generes un archivo (commit a disco) sin que el usuario lo pida explícitamente. La proactividad debe limitarse a propuestas en el chat.
+- **C1.4 (Mandato de No-Avance):** Queda terminantemente prohibido avanzar autónomamente a una nueva fase, etapa o archivo del proyecto sin que el usuario lo indique. El agente debe esperar la orden "Procede", "Siguiente" o similar antes de tocar un nuevo archivo.
 
 ## 2. Seguridad y Credenciales (Golden Rule)
 - **S2.1 (Hardcoding Nulo):** ESTRICTAMENTE PROHIBIDO empotrar/hardcodear cadenas de conexión a base de datos, contraseñas, URLs de APIs, tokens o cualquier credencial en código `.py`, `.json` o `.yaml`.
