@@ -24,7 +24,8 @@ No puedes sugerir cambios ni ejecutar código sin haber verificado el estado de 
 - **Modelos:** Evaluar Ridge, RandomForest, LightGBM, XGBoost, GradientBoosting y HistGradientBoosting.
 - **La Regla de Oro (X-1):** Nunca usar datos del día X para pronosticar el día X. El entrenamiento y la inferencia deben basarse en información completa hasta el día X-1.
 - **C1.2 (Evitar Ruido):** Un agente desarrollando un código del módulo "Data Contract" _jamás_ considerará reglas de ventas, cobros o algoritmos de ML. Si una regla no está en tus archivos vinculados explícitamente, asúmela irrelevante.
-- **C1.3 (Restricción de Archivos):** NUNCA escribas un documento o generes un archivo sin que el usuario lo pida explícitamente. La proactividad debe limitarse a propuestas de texto o código en el chat, no a la persistencia en disco sin autorización.
+- **C1.3 (Autorización Explícita de Archivos):** NUNCA escribas un documento o generes un archivo (commit a disco) sin que el usuario lo pida explícitamente. La proactividad debe limitarse a propuestas en el chat.
+- **C1.4 (Mandato de No-Avance):** Queda terminantemente prohibido avanzar autónomamente a una nueva fase, etapa o archivo del proyecto sin que el usuario lo indique. El agente debe esperar la orden "Procede", "Siguiente" o similar antes de tocar un nuevo archivo.
 - **Regla del Horizonte:** Pronóstico de 95 días (diarios). Presentación agregada mensualmente para cubrir un horizonte estratégico de 3 meses naturales.
 
 ## 📊 Reglas de Dominio (Bunuelos SAS)
