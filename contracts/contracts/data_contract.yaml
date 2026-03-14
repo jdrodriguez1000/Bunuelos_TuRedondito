@@ -1,0 +1,76 @@
+# ------------------------------------------------------------------------------
+# CONTRATO DE DATOS: Bunuelos_TuRedondito
+# VERSIÓN: 1.0.0
+# DESCRIPCIÓN: Definición estructural y semántica de las fuentes de datos.
+# ESTATUS: Stage 1.3 - COMPLETADO
+# ------------------------------------------------------------------------------
+
+data_sources:
+  - name: "inventory"
+    enabled: true
+    db_table: "usr_inventario_detallado"
+    primary_key: "fecha"
+    description: "Fuente maestra de inventario que contiene la variable objetivo del proyecto."
+    
+    schema:
+      # Llave Primaria y Temporalidad
+      fecha: "datetime"
+      
+      # Entradas de Bodega
+      kit_inicial_bodega: "int"
+      lbs_iniciales_bodega: "float"
+      kit_recibido: "int"
+      lbs_recibidas: "int"
+      lbs_totales_disponibles: "float"
+      
+      # Producción y Desempeño
+      bunuelos_preparados: "int"
+      bunuelos_desperdiciados: "int"
+      unidades_agotadas: "int"
+      
+      # Ventas Reales (Feedback)
+      ventas_reales_totales: "int"
+      ventas_reales_pagas: "int"
+      ventas_reales_bonificadas: "int"
+      
+      # Finales de Ciclo
+      kit_final_bodega: "int"
+      lbs_finales_bodega: "float"
+      
+      # VARIABLE OBJETIVO (Target)
+      demanda_teorica_total: "int"
+      
+      # Auditoría
+      created_at: "datetime"
+      updated_at: "datetime"
+
+  - name: "sales"
+    enabled: true
+    db_table: "usr_ventas"
+    primary_key: "fecha"
+    description: "Datos históricos de transacciones diarias de ventas."
+    schema:
+      fecha: "datetime"
+      unidades_totales: "int"
+      unidades_pagas: "int"
+      unidades_bonificadas: "int"
+      es_promocion: "int"
+      ads_activos: "int"
+      created_at: "datetime"
+      updated_at: "datetime"
+
+  - name: "weather"
+    enabled: true
+    db_table: "usr_clima_diario"
+    primary_key: "fecha"
+    description: "Variables exógenas climáticas y eventos macro de influencia en la demanda."
+    schema:
+      fecha: "datetime"
+      temperatura_media: "float"
+      probabilidad_lluvia: "float"
+      precipitacion_mm: "float"
+      tipo_lluvia: "string"
+      evento_macro: "string"
+      es_dia_lluvioso: "int"
+      created_at: "datetime"
+      updated_at: "datetime"

@@ -49,12 +49,12 @@ Todo agente debe respetar estas reglas antes de iniciar cualquier fase:
     *   Especificación: [[SPEC-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_02_spec.md) (COMPLETED)
     *   Plan de Imp.: [[IMPL-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_02_impl_plan.md) (COMPLETED)
 
-### F01-03: Data Contract Creation (PENDING)
+### F01-03: Data Contract Creation (IN PROGRESS)
 *   **Descripción:** Definición y validación de esquemas técnicos.
 *   **Documentación:**
-    *   Requerimientos: [[REQ-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_03_requirements.md)
-    *   Especificación: [[SPEC-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_03_spec.md)
-    *   Plan de Imp.: [[IMPL-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_03_impl_plan.md)
+    *   Requerimientos: [[REQ-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_03_requirements.md) (COMPLETED)
+    *   Especificación: [[SPEC-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_03_spec.md) (COMPLETED)
+    *   Plan de Imp.: [[IMPL-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_03_impl_plan.md) (COMPLETED)
 
 ---
 

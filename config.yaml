@@ -32,7 +32,13 @@ network:
 # ------------------------------------------------------------------------------
 tables:
   usr_ventas: "usr_ventas"
-  # Agregar más tablas conforme se avance en la Etapa 1.3
+  usr_inventario_detallado: "usr_inventario_detallado"
+  usr_clima_diario: "usr_clima_diario"
+
+# GOBERNANZA DEL CONTRATO
+contract:
+  mandatory_source: "inventory"
+  target_variable: "demanda_teorica_total"
 
 # ------------------------------------------------------------------------------
 # 3. REPORTING
