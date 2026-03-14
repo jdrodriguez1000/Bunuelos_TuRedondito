@@ -3,15 +3,25 @@ from unittest.mock import MagicMock, patch
 from src.connector.cloud_certification import CloudCertifier
 
 @pytest.fixture
-def mock_supabase():
-    with patch('src.connector.db_connector.DBConnector.get_service_client') as mock:
-        yield mock
+def mock_db_connector():
+    with patch('src.connector.cloud_certification.DBConnector') as mock_cls:
+        mock_instance = mock_cls.return_value
+        mock_instance.get_config.return_value = {
+            "paths": {
+                "cloud_storage": {
+                    "s3_tickets_prefix": "stage_load",
+                    "s3_ticket_name": "load_report.json"
+                }
+            }
+        }
+        mock_instance.s3_config = {"bucket": "test-bucket"}
+        yield mock_instance
 
-def test_publish_ticket_success(mock_supabase):
+def test_publish_ticket_success(mock_db_connector):
     # Arrange
     # Mocking the client structure: client.storage.from_().upload()
     mock_client = MagicMock()
-    mock_supabase.return_value = mock_client
+    mock_db_connector.get_service_client.return_value = mock_client
     
     mock_storage_bucket = MagicMock()
     mock_client.storage.from_.return_value = mock_storage_bucket
@@ -24,13 +34,13 @@ def test_publish_ticket_success(mock_supabase):
     # Assert
     assert "stage_load" in cloud_path
     assert "load_report.json" in cloud_path
-    mock_client.storage.from_.assert_called_with(certifier.bucket_name)
+    mock_client.storage.from_.assert_called_with("test-bucket")
     mock_storage_bucket.upload.assert_called()
 
-def test_publish_ticket_failure_logic(mock_supabase):
+def test_publish_ticket_failure_logic(mock_db_connector):
     # Arrange
     mock_client = MagicMock()
-    mock_supabase.return_value = mock_client
+    mock_db_connector.get_service_client.return_value = mock_client
     
     mock_storage_bucket = MagicMock()
     mock_client.storage.from_.return_value = mock_storage_bucket

@@ -16,7 +16,11 @@ class CloudCertifier:
         self.db = DBConnector()
         self.config = self.db.get_config()
         self.storage_config = self.config.get('paths', {}).get('cloud_storage', {})
+        
+        # Validación de configuración mínima
         self.bucket_name = self.db.s3_config.get('bucket')
+        if not self.bucket_name:
+            logger.warning("Nombre del bucket no encontrado en la configuración de S3.")
 
     def publish_ticket(self, report: Dict[str, Any]) -> str:
         """
