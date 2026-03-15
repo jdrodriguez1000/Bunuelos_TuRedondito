@@ -1,6 +1,6 @@
 [core]
     remote = storage
-['remote "storage"']
+[remote "storage"]
     url = s3://dvc_Bunuelos_TuRedondito
     endpointurl = https://ntnpdvugwxpthbpyzzyo.storage.supabase.co/storage/v1/s3
     region = us-east-1

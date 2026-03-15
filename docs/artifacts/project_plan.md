@@ -10,7 +10,7 @@ This document outlines the execution roadmap for the demand forecasting system o
 | Phase | Description | Status | Start Date | End Date |
 | :--- | :--- | :--- | :--- | :--- |
 | **01** | **Kickoff and Implementation** | **COMPLETED** | 2026-03-13 | 2026-03-14 |
-| **02** | **Minimum Viable Product (MVP) - Endogenous Variables** | Pending | - | - |
+| **02** | **Minimum Viable Product (MVP) - Endogenous Variables** | **IN PROGRESS** | 2026-03-14 | - |
 | **03** | **Robustness - Calendar** | Pending | - | - |
 | **04** | **Controllable Variables - Commercial & Marketing** | Pending | - | - |
 | **05** | **External Non-Controllable Variables - Macro & Weather** | Pending | - | - |
@@ -61,26 +61,36 @@ This document outlines the execution roadmap for the demand forecasting system o
 
 ---
 
-## 🏗️ Detailed Phase 02: Minimum Viable Product (MVP) - Endogenous Variables (PENDING)
+## 🏗️ Detailed Phase 02: Minimum Viable Product (MVP) - Endogenous Variables (IN PROGRESS)
 **Objective:** Build a robust forecasting baseline using internal historical sales data and technical demand variables.
 
-### Stage 2.1: Data Contract Validation (PENDING)
-- [ ] Implementation of Quality Guardrail (MD5 Integrity, Watermarking).
-- [ ] Development of `ContractValidator` with vectorized rules.
-- [ ] Orchestration of `main.py` entrypoint.
+### Stage 2.1: Data Validation & Ingest Certification (COMPLETED)
+- [x] Refinement of SDD Documentation: [PRD](../reqs/f02_01_requirements.md), [SPEC](../specs/f02_01_spec.md), [IMPL](../plans/f02_01_impl_plan.md).
+- [x] **[T-2.1-01] Motor de Validación (Validator Engine)**: Implementación de validación sintáctica y de integridad en `src/validator.py`.
+- [x] **[T-2.1-02] Semantic Hash (Huella Digital)**: Implementación de algoritmos para detectar cambios en datos fuente y asegurar trazabilidad DVC-less.
+- [x] **[T-2.1-03] Business Rule Profiling**: Cálculo automatizado de cuartiles, outliers (IQR), frecuencias y conteo de nulos por columna.
+- [x] **[T-2.1-04] Cloud Certifier (Ingest Tickets)**: Implementación de `CloudCertifier` para publicación de evidencias de validación en Supabase Storage (S3).
+- [x] **[T-2.1-05] Orquestación del comando `load`**: Integración en `main.py` para sincronizar validación, certificación y reporte.
+- [x] **[T-2.1-06] Blindaje de CI/CD**: Refactorización de conectores y tests con Mocking para asegurar ejecuciones exitosas en GitHub Actions (Hotfixes).
+- [x] **[T-2.1-07] QA Suite**: Suite completa de tests unitarios e integración (22 tests) con reporte de salud técnica.
+- [x] **[T-2.1-08] Resumen Ejecutivo 2.1**: Generación de reporte estratégico "Wow Factor" y registro de Deuda Técnica.
 
-### Stage 2.2: Data Loading & Health Dashboard (PENDING)
-- [ ] Implementation of `DataLoader` with incremental logic.
-- [ ] Development of Profiling Engine.
-- [ ] Setup of Data Health Dashboard (Next.js).
+### Stage 2.2: Physical Ingestion & Bronze Layer Storage (COMPLETED)
+- [x] Formalización de SDD: [PRD](../reqs/f02_02_requirements.md), [SPEC](../specs/f02_02_spec.md), [PLAN](../plans/f02_02_plan.md).
+- [x] **[T-2.2-01] Cloud-DVC Sync**: Configurar entorno DVC para sincronización obligatoria con storage remoto.
+- [x] **[T-2.2-02] Configuración Estratégica**: Actualizar `config.yaml` con frecuencias y reglas custom.
+- [x] **[T-2.2-03] Auditoría SQL**: Crear script de migración para la tabla `sys_ingestion_audit`.
+- [x] **[T-2.2-04] Ingestor Core (`src/ingestor.py`)**: Implementar motor de descarga por batches (Supabase Bypass).
+- [x] **[T-2.2-05] Hashing Inmutable (`src/ingestor.py`)**: Desarrollo de módulo de hashing semántico para persistencia Parquet.
+- [x] **[T-2.2-06] Algoritmos de Salud**: Implementación de lógica para Gaps, Leakage y Freshness en el ingestor.
+- [x] **[T-2.2-07] Dashboard Payload**: Generación de `health_report` (JSONB) con muestras (Head/Tail/Random).
+- [x] **[T-2.2-08] Orquestación Load**: Integración de `src/ingestor.py` en `main.py`.
+- [x] **[T-2.2-09] Cierre de Etapa**: Sistematización de Lecciones Aprendidas y Reporte Ejecutivo Wow Factor.
 
 ### Other Stages (Abbreviated)
-*   **Stage 2.3: Data Preprocessing (PENDING):** Target calculation (`demanda_teorica_total`).
-*   **Stage 2.4: Exploratory Data Analysis (EDA) (PENDING):** Signal & Noise analysis.
-*   **Stage 2.5: Feature Engineering (PENDING):** Creation of endogenous features (Lags, Rolling windows).
-*   **Stage 2.6: Training and Modeling (PENDING):** Model benchmarking (`skforecast`).
-*   **Stage 2.7: Invisibility & Inference (PENDING):** 95-day horizon forecasting.
-*   **Stage 2.8: Dashboard Layout & Construction (PENDING):** Final MVP visualization.
+*   **Stage 2.3: Training and Modeling (PENDING)**
+*   **Stage 2.4: Invisibility & Inference (PENDING)**
+*   **Stage 2.5: Dashboard MVP (PENDING)**
 
 ---
 

@@ -10,6 +10,7 @@ from typing import Dict, Any
 from src.validator import DataValidator
 from src.connector.db_connector import DBConnector
 from src.connector.cloud_certification import CloudCertifier
+from src.ingestor import UnifiedIngestor
 
 # Configuración de Logging Profesional
 logging.basicConfig(
@@ -30,6 +31,7 @@ class Orchestrator:
         self.validator = DataValidator(self.config.get('validation', {}))
         self.db = DBConnector() # Inicializa Singleton Guard
         self.certifier = CloudCertifier()
+        self.ingestor = UnifiedIngestor() # Ingestor Físico (Stage 2.2)
         self.mandatory_source = self.config['contract']['mandatory_source']
         
     def _load_yaml(self, path: str) -> Dict[str, Any]:
@@ -60,7 +62,15 @@ class Orchestrator:
         data_contract = {}
 
         try:
-            # 1. Cargar Contrato de Datos con Blindaje
+            # 1. Ejecutar Ingestión Física y Auditoría de Salud (Stage 2.2)
+            # Esto maneja batches, Parquet, Semantic Hashing y Health Audit.
+            ingestion_summary = self.ingestor.run_full_ingestion()
+            
+            if ingestion_summary["failed"] > 0:
+                logger.warning(f"⚠️ La ingestión terminó con {ingestion_summary['failed']} tablas fallidas.")
+
+            # 2. Cargar Contrato de Datos con Blindaje (Legacy/Validation 2.1)
+            # Mantenemos esto para compatibilidad con el reporte de validación estructural
             contract_path = self.config['contract']['path']
             try:
                 data_contract = self._load_yaml(contract_path)
