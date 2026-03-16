@@ -383,6 +383,9 @@ class UnifiedIngestor:
             file_name = os.path.basename(file_path)
             logger.info(f"   ☁️ Sincronizando con nube (DVC): {file_name}")
             
+            # 0. Limpieza de rastro previo (para evitar errores de metadatos corruptos .dir)
+            subprocess.run(["dvc", "remove", f"{file_path}.dvc"], capture_output=True)
+            
             # 1. dvc add
             result_add = subprocess.run(["dvc", "add", file_path], capture_output=True, text=True)
             if result_add.returncode != 0:
