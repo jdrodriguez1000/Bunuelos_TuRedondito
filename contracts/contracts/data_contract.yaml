@@ -45,7 +45,7 @@ data_sources:
       updated_at: "datetime"
 
   - name: "sales"
-    enabled: false
+    enabled: true
     db_table: "usr_ventas"
     primary_key: "fecha"
     description: "Datos históricos de transacciones diarias de ventas."
