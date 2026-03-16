@@ -618,6 +618,7 @@ class UnifiedIngestor:
             "status": status,
             "health_score": score,
             "row_count": count,
+            "load_type": report.get("load_type", "Full"),
             "health_report": report
         }
         
