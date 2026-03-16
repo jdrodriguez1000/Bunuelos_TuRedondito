@@ -36,6 +36,7 @@ data/**/*.json
 .dvc/tmp/
 
 # --- SYSTEM & OTHERS ---
+outputs/
 .DS_Store
 Thumbs.db
 .idea/

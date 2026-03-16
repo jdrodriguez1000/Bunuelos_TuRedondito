@@ -59,11 +59,13 @@ jobs:
 
       - name: Auto-commit DVC changes
         run: |
-          # Agregar archivos .dvc si existen (usar paths relativos seguros)
+          # Agregar archivos .dvc y .gitignore de datos si fueron actualizados
           git add data/**/*.dvc 2>/dev/null || true
           git add data/**/.gitignore 2>/dev/null || true
+          git add .gitignore 2>/dev/null || true
           
-          if [ -n "$(git status --porcelain)" ]; then
+          # Solo hacer commit si hay cambios en el area de stage
+          if ! git diff --cached --quiet; then
             git commit -m "chore: auto-update dvc pointers [skip ci]"
             git push origin HEAD
           else
