@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.4.0...Bunuelos_TuRedondito-v0.5.0) (2026-03-16)
+
+
+### Features
+
+* **dashboard:** implement monitoring logic and quality gate validation ([4c4d2e1](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/4c4d2e12b9caf6f388ce681622f0f75226bac5b7))
+* **dashboard:** implement monitoring logic and quality gate validation ([f332d04](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/f332d041b367e8836b947c132f3451f03a7d66f1))
+* **dashboard:** implement monitoring logic and quality gate validation ([9fb49e3](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/9fb49e331fd4133c8d48e65ffc973581bc4b2ec1))
+
 ## [0.4.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.3.0...Bunuelos_TuRedondito-v0.4.0) (2026-03-16)
 
 
