@@ -383,11 +383,21 @@ class UnifiedIngestor:
             file_name = os.path.basename(file_path)
             logger.info(f"   ☁️ Sincronizando con nube (DVC): {file_name}")
             
-            # 1. dvc add
-            subprocess.run(["dvc", "add", file_path], check=True, capture_output=True)
+            # 0. Limpieza de rastro previo (para evitar errores de metadatos corruptos .dir)
+            subprocess.run(["dvc", "remove", f"{file_path}.dvc"], capture_output=True)
             
-            # 2. dvc push
-            subprocess.run(["dvc", "push", file_path], check=True, capture_output=True)
+            # 1. dvc add
+            result_add = subprocess.run(["dvc", "add", file_path], capture_output=True, text=True)
+            if result_add.returncode != 0:
+                logger.error(f"   ❌ Falló 'dvc add': {result_add.stderr}")
+                return False
+            logger.info(f"   [DVC] Archivo añadido localmente ({file_name})")
+            
+            # 2. dvc push (Sincroniza con S3 usando el remoto configurado)
+            result_push = subprocess.run(["dvc", "push", "-r", "storage"], capture_output=True, text=True)
+            if result_push.returncode != 0:
+                logger.error(f"   ❌ Falló 'dvc push': {result_push.stderr}")
+                return False
             
             # 3. Verificación Real de Existencia en el Remoto (SPEC-F02-02)
             check_cmd = ["dvc", "status", "-r", "storage", file_path]
