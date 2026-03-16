@@ -64,6 +64,7 @@ export default function Dashboard() {
   const [violations, setViolations] = useState<{table: string, rule: string}[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [lastSync, setLastSync] = useState<string | null>(null);
   const [stats, setStats] = useState({
     totalRows: 0,
     avgScore: 0,
@@ -81,17 +82,22 @@ export default function Dashboard() {
         try {
           const { data: contractData } = await supabase
             .from("sys_validation_contract")
-            .select("support_json")
+            .select("support_json, created_at")
             .eq("status", "VALID")
             .order("created_at", { ascending: false })
             .limit(1);
           
           if (contractData && contractData[0]?.support_json) {
-            const contract = contractData[0].support_json as any;
-            // Extraer tablas habilitadas del contrato
-            authorizedTables = (contract.sources?.inventory?.tables || [])
-              .filter((t: any) => t.enabled !== false)
+            const report = contractData[0].support_json as any;
+            // El support_json es el load_report, las tablas autorizadas están en el objeto 'tables'
+            // Solo mostramos lo que el orquestador certificó en la última corrida válida
+            authorizedTables = Object.values(report.tables || {})
               .map((t: any) => t.db_table);
+            
+            console.log("Tablas autorizadas por contrato:", authorizedTables);
+            if (contractData[0]?.created_at) {
+              setLastSync(contractData[0].created_at);
+            }
           }
         } catch (e) {
           console.warn("No se pudo cargar el contrato desde Supabase, usando descubrimiento por prefijo.");
@@ -208,9 +214,24 @@ export default function Dashboard() {
           <div className="subtitle">Operational Intelligence</div>
           <h1>Bunuelos Pulse</h1>
         </div>
-        <div className={`badge ${stats.avgScore > 80 ? 'success' : 'warning'}`}>
-          <div className="pulse-dot"></div>
-          System Status: {stats.status}
+        
+        <div className="flex flex-col items-end gap-1.5">
+          <div className={`badge ${stats.avgScore > 80 ? 'success' : 'warning'}`}>
+            <div className="pulse-dot"></div>
+            System Status: {stats.status}
+          </div>
+          {lastSync && (
+            <div className="flex items-center gap-1 text-[9px] text-secondary opacity-50 pr-2">
+              <Clock size={8} />
+              <span>Last sync: {new Date(lastSync).toLocaleString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: true 
+              })}</span>
+            </div>
+          )}
         </div>
       </header>
 
