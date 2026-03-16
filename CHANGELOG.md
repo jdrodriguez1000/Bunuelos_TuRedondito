@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.6.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.5.0...Bunuelos_TuRedondito-v0.6.0) (2026-03-16)
+
+
+### Features
+
+* **ops:** establish automated daily data pipeline at 02:00 COL ([b4abdc5](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/b4abdc52931a983049bc0be5a7c5a2da274e904b))
+* **ops:** establish automated daily data pipeline at 02:00 COL ([1eb7905](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/1eb7905a8e4050b3daa43def7d06edc2edbda00c))
+* **ops:** implement scheduled daily data pipeline at 02:00 COL ([4766827](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/4766827950fa925b33477150b43d5515c527f6c7))
+
 ## [0.5.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.4.0...Bunuelos_TuRedondito-v0.5.0) (2026-03-16)
 
 
