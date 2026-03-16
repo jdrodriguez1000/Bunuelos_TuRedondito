@@ -76,37 +76,51 @@ export default function Dashboard() {
     setMounted(true);
     async function fetchData() {
       try {
+        // 1. Obtener lista de tablas autorizadas desde el Contrato en Supabase (SSoT Cloud)
+        let authorizedTables: string[] = [];
+        try {
+          const { data: contractData } = await supabase
+            .from("sys_validation_contract")
+            .select("support_json")
+            .eq("status", "VALID")
+            .order("created_at", { ascending: false })
+            .limit(1);
+          
+          if (contractData && contractData[0]?.support_json) {
+            const contract = contractData[0].support_json as any;
+            // Extraer tablas habilitadas del contrato
+            authorizedTables = (contract.sources?.inventory?.tables || [])
+              .filter((t: any) => t.enabled !== false)
+              .map((t: any) => t.db_table);
+          }
+        } catch (e) {
+          console.warn("No se pudo cargar el contrato desde Supabase, usando descubrimiento por prefijo.");
+        }
+
+        // 2. Obtener auditoría
         const { data: auditData, error } = await supabase
           .from("sys_ingestion_audit")
           .select("*")
           .order("created_at", { ascending: false })
-          .limit(80); // Fetch more for trends
+          .limit(100);
 
-        if (error) {
-          console.error("Supabase Error Object:", JSON.stringify(error, null, 2));
-          console.error("Status:", (error as any).status);
-          console.error("Message:", error.message);
-          throw error;
-        }
+        if (error) throw error;
 
-        // Keep only the latest record for each table defined in the contract
-        const contractTables = [
-          'usr_inventario_detallado', 
-          'usr_ventas', 
-          'usr_clima_diario', 
-          'usr_ipc_mensual',
-          'usr_salario_minimo_anual'
-        ];
-        
         const latestEntries: AuditEntry[] = [];
         const seenTables = new Set();
         const tableTrends: Record<string, number[]> = {};
         const tableHistoryVolumes: Record<string, number[]> = {};
         const allViolations: {table: string, rule: string}[] = [];
         
-        // Build history for drift analysis
         (auditData || []).forEach(entry => {
-          if (!contractTables.includes(entry.table_name)) return;
+          // Portero Dinámico: 
+          // Si tenemos lista del contrato en la nube, la usamos. Si no, usamos el prefijo 'usr_'
+          const isAuthorized = authorizedTables.length > 0 
+            ? authorizedTables.includes(entry.table_name)
+            : entry.table_name.startsWith('usr_');
+
+          if (!isAuthorized) return;
+
           if (!tableTrends[entry.table_name]) {
             tableTrends[entry.table_name] = [];
             tableHistoryVolumes[entry.table_name] = [];
