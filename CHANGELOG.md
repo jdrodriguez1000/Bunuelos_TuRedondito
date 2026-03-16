@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.4.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.3.0...Bunuelos_TuRedondito-v0.4.0) (2026-03-16)
+
+
+### Features
+
+* **arch:** complete Phase 01: infrastructure, connectivity, and data contract [MILESTONE-03] ([4c37cd3](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/4c37cd36760579794231d36174ba47d1ab5e9f58))
+* complete Stage 2.2 and sync Cloud-DVC with Supabase S3 bucket dvc_Bunuelos_TuRedondito ([7d816b9](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/7d816b95c7ed62aea03b549551451cdce08d6449))
+* Finalización Etapa 2.2 - Ingesta, Gobernanza y Consolidación Documental ([01d640c](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/01d640c7a4a49aa3d7a24f36d9fb505e51a45a69))
+* **ingestion:** completar etapa 2.2, consolidar reportes y cerrar gobernanza ([e97cf1e](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/e97cf1e41153064feccf800122f7f423cff1b017))
+
+
+### Bug Fixes
+
+* desacoplar configuración de S3 en tests y mejorar robustez de conectores ([a52dcca](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/a52dcca9739a97bf8c91393c93d6d2362c4aa13e))
+
 ## [0.3.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.2.0...Bunuelos_TuRedondito-v0.3.0) (2026-03-14)
 
 
