@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.8.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.7.0...Bunuelos_TuRedondito-v0.8.0) (2026-03-16)
+
+
+### Features
+
+* **contract:** enable ipc and smlv tables for ingestion ([41b2b10](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/41b2b10e3276753ad8244946f6f8b812d08c74a9))
+* **contract:** enable sales table for ingestion ([f6711f5](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/f6711f58e8bbf0f340dbebddaecd537db7f5822e))
+* **dashboard:** cloud-native dynamic authorized tables from supabase contract ([0fbf662](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/0fbf66256d68b832feec221d1df1c63bb48e6057))
+* **dashboard:** refine last sync indicator to be ultra-discreet and in English ([82753f8](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/82753f88e0e4a95242cc63d86dafde00200dac9c))
+* Hard Reset & Dynamic Governance for Production Readiness ([cad8404](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/cad840472da60aa57b4f2d81757942b237424573))
+
+
+### Bug Fixes
+
+* **dashboard:** add usr_salario_minimo_anual to audit view ([b16cba8](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/b16cba85c2eb6a69dd2f2945b4b83a8945ba9c97))
+* explicit cleaning before dvc add ([d90bb40](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/d90bb4090896ee82e83db8334ca39727294f7b3b))
+* **pipeline:** enable verbose DVC errors and secure local config ([efd02e6](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/efd02e6568b79174ca88316f366dd153a7ea4240))
+* **pipeline:** overhaul bootstrap configuration for clean start ([2485257](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/248525735b0d8303aaf9430fb40b3840a4f6d26d))
+* **pipeline:** remove obsolete scripts and fix auto-commit logic ([c2cd19a](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/c2cd19a81a90c798c193ce656b64f4b1cfcb7d75))
+
 ## [0.7.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.6.0...Bunuelos_TuRedondito-v0.7.0) (2026-03-16)
 
 
