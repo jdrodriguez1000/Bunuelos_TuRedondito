@@ -145,10 +145,16 @@ class UnifiedIngestor:
             
             try:
                 logger.info(f"--- Procesando Tabla: {real_table_name} (Origen: {table_id_contract}) ---")
-                
-                # 2. Análisis de Estrategia de Ingesta (Punteros)
-                last_audit = self._get_last_audit_state(real_table_name)
-                current_count = self._get_remote_count(real_table_name)
+                try:
+                    logger.info(f"🚀 Iniciando Auditoría para {real_table_name}...")
+                    strategy = "FULL" # Default strategy
+                    last_audit = self._get_last_audit_state(real_table_name)
+                    current_count = self._get_remote_count(real_table_name)
+                except Exception as e:
+                    logger.error(f"🚨 Error al obtener estado de auditoría o conteo remoto para {real_table_name}: {str(e)}")
+                    self._log_audit(execution_id, real_table_name, "FAILED", 0.0, 0, {"error": f"Error inicial: {str(e)}"}, load_type="UNKNOWN")
+                    summary["failed"] += 1
+                    continue
                 
                 # 3. Validación de Contrato Estricta (Especial Hito 0 / Primeras Cargas)
                 # Si no hay auditoría previa o estamos en bootstrap, validamos contrato antes de seguir
@@ -164,7 +170,7 @@ class UnifiedIngestor:
                             val_report = self.validator.validate_table(real_table_name, sample_df, table_contract)
                             if val_report['status'] != 'VALID':
                                 logger.error(f"❌ FALLO DE CONTRATO EN HITO 0: {val_report['errors']}")
-                                self._log_audit(execution_id, real_table_name, "FAILED", 0.0, 0, {"error": "Fallo estructural en carga inicial", "details": val_report['errors']})
+                                self._log_audit(execution_id, real_table_name, "FAILED", 0.0, 0, {"error": "Fallo estructural en carga inicial", "details": val_report['errors']}, load_type=strategy)
                                 summary["failed"] += 1
                                 continue
                             logger.info(f"✅ Estructura validada exitosamente para {real_table_name}.")
@@ -174,13 +180,15 @@ class UnifiedIngestor:
                 strategy = "FULL"
                 last_row_count = last_audit.get('row_count', 0) if last_audit else 0
                 
+                # 2. Check for Incremental Load Possibility
                 if last_audit and current_count == last_row_count:
                     strategy = "SKIP"
                     logger.info(f"   ✅ Sin cambios detectados (Puntero: {current_count} filas). Saltando descarga.")
                 elif last_audit and current_count > last_row_count:
                     strategy = "INCREMENTAL"
-                    logger.info(f"   📈 Datos nuevos detectados ({current_count - last_row_count} filas nuevas).")
-                else:
+                    logger.info(f"   📈 Detectadas {current_count - last_row_count} nuevas filas. Iniciando descarga incremental.")
+                else: # last_audit is None or current_count < last_row_count (data loss or first load)
+                    strategy = "FULL"
                     logger.info(f"   🔄 Carga Completa requerida (Refresh o Primera Carga).")
 
                 # 3. Descarga Inteligente (Incremental vs Full)
@@ -190,7 +198,7 @@ class UnifiedIngestor:
                     s_hash_to_reuse = last_audit.get('semantic_hash')
                     
                     # Registrar auditoría de re-uso para trazabilidad en esta ejecución
-                    self._log_audit(execution_id, real_table_name, "SUCCESS", score_to_reuse, current_count, h_report_to_reuse, s_hash_to_reuse)
+                    self._log_audit(execution_id, real_table_name, "SUCCESS", score_to_reuse, current_count, h_report_to_reuse, s_hash_to_reuse, load_type="SKIP")
 
                     summary["details"].append({
                         "table": real_table_name,
@@ -238,7 +246,7 @@ class UnifiedIngestor:
                     logger.warning(f"⚠️ {error_msg}")
                     
                     # Log NO_DATA en auditoría (SPEC-F02-02)
-                    self._log_audit(execution_id, real_table_name, "NO_DATA", 0, 0, {"error": error_msg})
+                    self._log_audit(execution_id, real_table_name, "NO_DATA", 0, 0, {"error": error_msg}, load_type=strategy)
 
                     summary["details"].append({
                         "table": real_table_name,
@@ -283,7 +291,7 @@ class UnifiedIngestor:
                     db_status = "SUCCESS"
                     internal_status = "SUCCESS"
 
-                self._log_audit(execution_id, real_table_name, db_status, health_score, len(df), health_report, semantic_hash)
+                self._log_audit(execution_id, real_table_name, db_status, health_score, len(df), health_report, semantic_hash, load_type=strategy)
                  
                 summary["processed"] += 1
                 summary["details"].append({
@@ -309,7 +317,7 @@ class UnifiedIngestor:
                     "row_count": 0
                 })
                 try:
-                    self._log_audit(execution_id, real_table_name, "FAILED", 0, 0, {"error": str(e)})
+                    self._log_audit(execution_id, real_table_name, "FAILED", 0, 0, {"error": str(e)}, load_type=strategy)
                 except: pass
 
         logger.info(f"🏁 Ingestión Finalizada. Procesadas: {summary['processed']}, Fallidas: {summary['failed']}")
@@ -413,7 +421,7 @@ class UnifiedIngestor:
                 "null_columns": [col for col in df.columns if df[col].isna().any()] if not df.empty else [],
                 "duplicate_rows": int(df.duplicated().sum()) if not df.empty else 0,
                 "sentinel_values_found": self._check_sentinels(df, settings.get('sentinels', [])),
-                "custom_rules_violations": self._check_custom_rules(df, settings.get('custom_rules', []))
+                "custom_rules_violations_raw": self._check_custom_rules_v2(df, settings.get('custom_rules', []))
             },
             "time_analysis": {
                 "frequency": settings.get('frequency', 'D'),
@@ -424,6 +432,9 @@ class UnifiedIngestor:
         # Extraer métricas de tiempo para reporte de calidad
         report["quality_metrics"]["invalid_dates"] = report["time_analysis"].get("invalid_dates_count", 0)
         report["quality_metrics"]["null_pct"] = self._calculate_null_pct(df)
+        
+        # Inyectar lista de mensajes legibles para compatibilidad con el dashboard
+        report["quality_metrics"]["custom_rules_violations"] = [v['message'] for v in report["quality_metrics"]["custom_rules_violations_raw"]]
 
         # CÁLCULO DE HEALTH SCORE PONDERADO (Weighted Aggregate Score) [RSK-22]
         scoring_conf = self.config.get('ingestion', {}).get('scoring', {})
@@ -431,12 +442,26 @@ class UnifiedIngestor:
         penalties = scoring_conf.get('penalties', {})
 
         # Pilar 1: Reglas de Negocio (Business Rules) - 50%
-        # Penalización proporcional al % de registros que fallan
-        raw_violations = report["quality_metrics"]["custom_rules_violations"]
+        # Penalización mucho más agresiva: 
+        # 1. Penalización fija por cualquier falla (Asegura que el score baje de 100 de inmediato)
+        # 2. Penalización proporcional al % de registros que fallan
+        violations_data = report["quality_metrics"]["custom_rules_violations_raw"]
         business_score = 100.0
-        if raw_violations:
-            # Si hay violaciones, restamos basado en el factor del config
-            business_score -= len(raw_violations) * penalties.get('per_custom_rule_violation_pct', 2.0)
+        
+        if violations_data:
+            total_fails = sum(v['fails'] for v in violations_data)
+            fail_pct = (total_fails / len(df)) * 100 if not df.empty else 0
+            
+            # Penalización fija: 15 puntos por el simple hecho de tener violaciones de negocio
+            fixed_penalty = 15.0
+            
+            # Penalización variable: % de fallos * factor (ej. 2.0)
+            variable_penalty = fail_pct * penalties.get('per_custom_rule_violation_pct', 2.0)
+            
+            # Penalización por regla distinta que falla: 5 puntos por cada regla única fallida
+            rule_count_penalty = len(violations_data) * 5.0
+            
+            business_score = 100.0 - fixed_penalty - variable_penalty - rule_count_penalty
         
         # Pilar 2: Continuidad Temporal (Time Continuity) - 20%
         # Penalización por cada día de Gap
@@ -489,10 +514,9 @@ class UnifiedIngestor:
                 hits[col] = int(count)
         return hits
 
-    def _check_custom_rules(self, df: pd.DataFrame, rules: List[Dict]) -> List[str]:
+    def _check_custom_rules_v2(self, df: pd.DataFrame, rules: List[Dict]) -> List[Dict]:
         """
-        Valida reglas de negocio dinámicas definidas en config.yaml.
-        Soporta: Macros (all_fields), Implicación (=>), Operaciones Matemáticas.
+        Versión mejorada que extrae conteos precisos de fallos para scoring agresivo.
         """
         violations = []
         if df.empty:
@@ -507,26 +531,33 @@ class UnifiedIngestor:
                 if "all_fields >= 0" in expr:
                     numeric_df = df.select_dtypes(include=['number'])
                     failed_mask = (numeric_df < 0).any(axis=1)
-                    fail_count = failed_mask.sum()
+                    fail_count = int(failed_mask.sum())
                     if fail_count > 0:
-                        violations.append(f"{name}: {fail_count} registros tienen valores negativos en campos numéricos.")
+                        violations.append({
+                            "rule": name,
+                            "fails": fail_count,
+                            "message": f"{name}: {fail_count} registros tienen valores negativos en campos numéricos."
+                        })
                     continue
 
                 # 2. Transformación de Operador de Implicación: A => B  es  (not A) or B
+                processed_expr = expr
                 if "=>" in expr:
                     antecedent, consequent = expr.split("=>")
-                    # En pandas eval: (~(antecedente)) | (consecuente)
-                    expr = f"(~({antecedent.strip()})) | ({consequent.strip()})"
+                    processed_expr = f"(~({antecedent.strip()})) | ({consequent.strip()})"
 
                 # 3. Evaluación segura con Pandas
-                # Nota: engine='python' permite más flexibilidad en expresiones complejas
-                mask = df.eval(expr, engine='python')
+                mask = df.eval(processed_expr, engine='python')
                 
                 # Para implicaciones o booleanos, la máscara indica CUMPLIMIENTO (True)
-                fail_count = (~mask).sum()
+                fail_count = int((~mask).sum())
                 
                 if fail_count > 0:
-                    violations.append(f"{name}: {fail_count} registros fallaron la validación.")
+                    violations.append({
+                        "rule": name,
+                        "fails": fail_count,
+                        "message": f"{name}: {fail_count} registros fallaron la validación."
+                    })
                     
             except Exception as e:
                 logger.warning(f"⚠️ Salto de regla '{name}' por error técnico: {str(e)}")
@@ -609,7 +640,7 @@ class UnifiedIngestor:
         return hashlib.sha256(raw.encode()).hexdigest()
 
     @backoff_retry(retries=3)
-    def _log_audit(self, exec_id: str, table_name: str, status: str, score: float, count: int, report: Dict, s_hash: str = "N/A"):
+    def _log_audit(self, exec_id: str, table_name: str, status: str, score: float, count: int, report: Dict, s_hash: str = "N/A", load_type: str = "FULL"):
         """Inserta el registro de auditoría en la tabla sys_ingestion_audit [T-2.2-03]."""
         payload = {
             "execution_id": exec_id,
@@ -618,7 +649,7 @@ class UnifiedIngestor:
             "status": status,
             "health_score": score,
             "row_count": count,
-            "load_type": report.get("load_type", "Full"),
+            "load_type": load_type,
             "health_report": report
         }
         

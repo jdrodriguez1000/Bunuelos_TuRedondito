@@ -1,8 +1,8 @@
 {
-    "execution_id": "1202c67c-759c-4c55-a5ea-5855657d8bf3",
-    "timestamp": "2026-03-15T17:37:14.503101",
+    "execution_id": "7619e9c2-f8bd-41de-a418-4b623f56fd6c",
+    "timestamp": "2026-03-16T11:33:52.037718",
     "status": "SUCCESS",
-    "load_type": "FULL (Partial Refresh)",
+    "load_type": "NO_NEW_DATA",
     "tables": {
         "inventory": {
             "source_name": "inventory",
@@ -11,9 +11,9 @@
             "status_reason": "No changes (Strategy: SKIP)",
             "strategy": "SKIP",
             "metrics": {
-                "row_count": 3360,
-                "semantic_hash": "81f948a74eccd70529cccb9534407ddff1699bdc15d54b0daaa0d11e0fbacc7e",
-                "health_score": 100,
+                "row_count": 3361,
+                "semantic_hash": "98137aad14500554d3c6dacc44668d246a9d487a7e098f7ae9ad5b1ae1623da3",
+                "health_score": 90,
                 "duplicates_found": 0
             },
             "structural_validation": {
@@ -83,25 +83,6 @@
                     ],
                     "tail": [
                         {
-                            "fecha": "2026-03-12",
-                            "created_at": "2026-03-13T21:23:49.162869+00:00",
-                            "updated_at": "2026-03-13T21:23:49.162869+00:00",
-                            "kit_recibido": 0,
-                            "lbs_recibidas": 0,
-                            "kit_final_bodega": 12963,
-                            "unidades_agotadas": 0,
-                            "kit_inicial_bodega": 17875,
-                            "lbs_finales_bodega": 259.26,
-                            "bunuelos_preparados": 655,
-                            "ventas_reales_pagas": 655,
-                            "lbs_iniciales_bodega": 357.5,
-                            "demanda_teorica_total": 655,
-                            "ventas_reales_totales": 655,
-                            "bunuelos_desperdiciados": 13,
-                            "lbs_totales_disponibles": 357.5,
-                            "ventas_reales_bonificadas": 0
-                        },
-                        {
                             "fecha": "2026-03-13",
                             "created_at": "2026-03-14T06:37:51.316245+00:00",
                             "updated_at": "2026-03-14T06:37:51.316245+00:00",
@@ -138,64 +119,83 @@
                             "bunuelos_desperdiciados": 13,
                             "lbs_totales_disponibles": 151.12,
                             "ventas_reales_bonificadas": 0
+                        },
+                        {
+                            "fecha": "2026-03-15",
+                            "created_at": "2026-03-16T07:08:14.686689+00:00",
+                            "updated_at": "2026-03-16T07:08:14.686689+00:00",
+                            "kit_recibido": 0,
+                            "lbs_recibidas": 0,
+                            "kit_final_bodega": -3986,
+                            "unidades_agotadas": 0,
+                            "kit_inicial_bodega": 2329,
+                            "lbs_finales_bodega": -79.72,
+                            "bunuelos_preparados": 842,
+                            "ventas_reales_pagas": 842,
+                            "lbs_iniciales_bodega": 46.58,
+                            "demanda_teorica_total": 842,
+                            "ventas_reales_totales": 842,
+                            "bunuelos_desperdiciados": 16,
+                            "lbs_totales_disponibles": 46.58,
+                            "ventas_reales_bonificadas": 0
                         }
                     ],
                     "random": [
                         {
-                            "fecha": "2025-10-24",
-                            "created_at": "2026-03-13T20:56:11.094505+00:00",
-                            "updated_at": "2026-03-13T20:56:11.094505+00:00",
+                            "fecha": "2024-12-10",
+                            "created_at": "2026-03-13T20:56:10.790006+00:00",
+                            "updated_at": "2026-03-13T20:56:10.790006+00:00",
                             "kit_recibido": 0,
                             "lbs_recibidas": 0,
-                            "kit_final_bodega": 63052,
-                            "unidades_agotadas": 0,
-                            "kit_inicial_bodega": 63423,
-                            "lbs_finales_bodega": 1261.04,
-                            "bunuelos_preparados": 371,
-                            "ventas_reales_pagas": 366,
-                            "lbs_iniciales_bodega": 1268.46,
-                            "demanda_teorica_total": 366,
-                            "ventas_reales_totales": 366,
-                            "bunuelos_desperdiciados": 5,
-                            "lbs_totales_disponibles": 1268.46,
+                            "kit_final_bodega": 57659,
+                            "unidades_agotadas": 3,
+                            "kit_inicial_bodega": 58002,
+                            "lbs_finales_bodega": 1153.18,
+                            "bunuelos_preparados": 343,
+                            "ventas_reales_pagas": 343,
+                            "lbs_iniciales_bodega": 1160.04,
+                            "demanda_teorica_total": 346,
+                            "ventas_reales_totales": 343,
+                            "bunuelos_desperdiciados": 0,
+                            "lbs_totales_disponibles": 1160.04,
                             "ventas_reales_bonificadas": 0
                         },
                         {
-                            "fecha": "2025-07-27",
-                            "created_at": "2026-03-13T20:56:11.094505+00:00",
-                            "updated_at": "2026-03-13T20:56:11.094505+00:00",
+                            "fecha": "2017-09-03",
+                            "created_at": "2026-03-13T20:56:09.056192+00:00",
+                            "updated_at": "2026-03-13T20:56:09.056192+00:00",
                             "kit_recibido": 0,
                             "lbs_recibidas": 0,
-                            "kit_final_bodega": 60152,
+                            "kit_final_bodega": 5527,
                             "unidades_agotadas": 0,
-                            "kit_inicial_bodega": 60592,
-                            "lbs_finales_bodega": 1203.04,
-                            "bunuelos_preparados": 440,
-                            "ventas_reales_pagas": 415,
-                            "lbs_iniciales_bodega": 1211.84,
-                            "demanda_teorica_total": 415,
-                            "ventas_reales_totales": 415,
+                            "kit_inicial_bodega": 5880,
+                            "lbs_finales_bodega": 110.54,
+                            "bunuelos_preparados": 353,
+                            "ventas_reales_pagas": 328,
+                            "lbs_iniciales_bodega": 117.6,
+                            "demanda_teorica_total": 328,
+                            "ventas_reales_totales": 328,
                             "bunuelos_desperdiciados": 25,
-                            "lbs_totales_disponibles": 1211.84,
+                            "lbs_totales_disponibles": 117.6,
                             "ventas_reales_bonificadas": 0
                         },
                         {
-                            "fecha": "2022-09-03",
-                            "created_at": "2026-03-13T20:56:10.502221+00:00",
-                            "updated_at": "2026-03-13T20:56:10.502221+00:00",
+                            "fecha": "2021-12-17",
+                            "created_at": "2026-03-13T20:56:10.13917+00:00",
+                            "updated_at": "2026-03-13T20:56:10.13917+00:00",
                             "kit_recibido": 0,
                             "lbs_recibidas": 0,
-                            "kit_final_bodega": 41865,
+                            "kit_final_bodega": 38616,
                             "unidades_agotadas": 0,
-                            "kit_inicial_bodega": 42497,
-                            "lbs_finales_bodega": 837.3,
-                            "bunuelos_preparados": 632,
-                            "ventas_reales_pagas": 598,
-                            "lbs_iniciales_bodega": 849.94,
-                            "demanda_teorica_total": 598,
-                            "ventas_reales_totales": 598,
-                            "bunuelos_desperdiciados": 34,
-                            "lbs_totales_disponibles": 849.94,
+                            "kit_inicial_bodega": 39130,
+                            "lbs_finales_bodega": 772.32,
+                            "bunuelos_preparados": 514,
+                            "ventas_reales_pagas": 508,
+                            "lbs_iniciales_bodega": 782.6,
+                            "demanda_teorica_total": 508,
+                            "ventas_reales_totales": 508,
+                            "bunuelos_desperdiciados": 6,
+                            "lbs_totales_disponibles": 782.6,
                             "ventas_reales_bonificadas": 0
                         }
                     ]
@@ -213,10 +213,19 @@
                     "invalid_dates": 0,
                     "duplicate_rows": 0,
                     "sentinel_values_found": {},
-                    "custom_rules_violations": []
+                    "custom_rules_violations": [
+                        "positividad_inventario: 1 registros tienen valores negativos en campos num\u00e9ricos."
+                    ],
+                    "custom_rules_violations_raw": [
+                        {
+                            "rule": "positividad_inventario",
+                            "fails": 1,
+                            "message": "positividad_inventario: 1 registros tienen valores negativos en campos num\u00e9ricos."
+                        }
+                    ]
                 },
                 "health_dimensions": {
-                    "business": 100.0,
+                    "business": 79.94,
                     "cleaning": 100.0,
                     "integrity": 100.0,
                     "continuity": 100.0
@@ -231,8 +240,8 @@
             "status_reason": "No changes (Strategy: SKIP)",
             "strategy": "SKIP",
             "metrics": {
-                "row_count": 3360,
-                "semantic_hash": "d10afae8423e14fd1611635da0f0be00dbf2e9b089ebb96bad4cc713f1fa23ea",
+                "row_count": 3361,
+                "semantic_hash": "26704ed7a864640a95753a33a2b8c9691194549f0263a93bab063cb6a865f4e9",
                 "health_score": 100,
                 "duplicates_found": 0
             },
@@ -276,16 +285,6 @@
                     ],
                     "tail": [
                         {
-                            "fecha": "2026-03-12",
-                            "created_at": "2026-03-13T21:23:49.012796+00:00",
-                            "updated_at": "2026-03-13T21:23:49.012796+00:00",
-                            "ads_activos": 1,
-                            "es_promocion": 0,
-                            "unidades_pagas": 655,
-                            "unidades_totales": 655,
-                            "unidades_bonificadas": 0
-                        },
-                        {
                             "fecha": "2026-03-13",
                             "created_at": "2026-03-14T06:37:51.241004+00:00",
                             "updated_at": "2026-03-14T06:37:51.241004+00:00",
@@ -304,37 +303,47 @@
                             "unidades_pagas": 697,
                             "unidades_totales": 697,
                             "unidades_bonificadas": 0
+                        },
+                        {
+                            "fecha": "2026-03-15",
+                            "created_at": "2026-03-16T07:08:14.624471+00:00",
+                            "updated_at": "2026-03-16T07:08:14.624471+00:00",
+                            "ads_activos": 1,
+                            "es_promocion": 0,
+                            "unidades_pagas": 842,
+                            "unidades_totales": 842,
+                            "unidades_bonificadas": 0
                         }
                     ],
                     "random": [
                         {
-                            "fecha": "2023-06-16",
+                            "fecha": "2023-07-14",
                             "created_at": "2026-03-13T20:56:08.096561+00:00",
                             "updated_at": "2026-03-13T20:56:08.096561+00:00",
                             "ads_activos": 0,
                             "es_promocion": 0,
-                            "unidades_pagas": 317,
-                            "unidades_totales": 317,
+                            "unidades_pagas": 319,
+                            "unidades_totales": 319,
                             "unidades_bonificadas": 0
                         },
                         {
-                            "fecha": "2022-11-22",
-                            "created_at": "2026-03-13T20:56:08.096561+00:00",
-                            "updated_at": "2026-03-13T20:56:08.096561+00:00",
-                            "ads_activos": 0,
-                            "es_promocion": 0,
-                            "unidades_pagas": 236,
-                            "unidades_totales": 236,
-                            "unidades_bonificadas": 0
-                        },
-                        {
-                            "fecha": "2017-09-15",
+                            "fecha": "2017-03-05",
                             "created_at": "2026-03-13T20:56:06.73577+00:00",
                             "updated_at": "2026-03-13T20:56:06.73577+00:00",
                             "ads_activos": 0,
                             "es_promocion": 0,
-                            "unidades_pagas": 341,
-                            "unidades_totales": 341,
+                            "unidades_pagas": 322,
+                            "unidades_totales": 322,
+                            "unidades_bonificadas": 0
+                        },
+                        {
+                            "fecha": "2025-07-21",
+                            "created_at": "2026-03-13T20:56:08.706466+00:00",
+                            "updated_at": "2026-03-13T20:56:08.706466+00:00",
+                            "ads_activos": 0,
+                            "es_promocion": 0,
+                            "unidades_pagas": 271,
+                            "unidades_totales": 271,
                             "unidades_bonificadas": 0
                         }
                     ]
@@ -352,7 +361,8 @@
                     "invalid_dates": 0,
                     "duplicate_rows": 0,
                     "sentinel_values_found": {},
-                    "custom_rules_violations": []
+                    "custom_rules_violations": [],
+                    "custom_rules_violations_raw": []
                 },
                 "health_dimensions": {
                     "business": 100.0,
@@ -367,297 +377,147 @@
             "source_name": "weather",
             "db_table": "usr_clima_diario",
             "certification_status": "CERTIFIED",
-            "status_reason": "Certified",
-            "strategy": "FULL",
+            "status_reason": "No changes (Strategy: SKIP)",
+            "strategy": "SKIP",
             "metrics": {
-                "row_count": 3360,
-                "semantic_hash": "1b504eb448210719e91ff3da8298013656484edc8514a2ebf740194005c96e01",
-                "health_score": 100.0,
+                "row_count": 3361,
+                "semantic_hash": "55a278f4817fe912b77c9365069c212f1d99c91590d05917ab6e36d986147b0b",
+                "health_score": 100,
                 "duplicates_found": 0
             },
             "structural_validation": {
-                "table": "usr_clima_diario",
-                "timestamp": "2026-03-15T17:37:42.953049",
                 "status": "VALID",
-                "row_count": 3360,
-                "errors": [],
-                "columns": {
-                    "fecha": {
-                        "status": "VALID",
-                        "type": "datetime",
-                        "stats": {
-                            "min": "2017-01-01 00:00:00",
-                            "max": "2026-03-14 00:00:00",
-                            "nat_increase": 0
-                        }
-                    },
-                    "temperatura_media": {
-                        "status": "VALID",
-                        "type": "float",
-                        "stats": {
-                            "mean": 22.01928571428571,
-                            "std": 1.158978089988598,
-                            "min": 18.5,
-                            "max": 26.0,
-                            "q1": 21.1,
-                            "median": 22.0,
-                            "q3": 22.9
-                        },
-                        "outliers": {
-                            "count": 1,
-                            "lower_bound": 18.400000000000006,
-                            "upper_bound": 25.599999999999994
-                        }
-                    },
-                    "probabilidad_lluvia": {
-                        "status": "VALID",
-                        "type": "float",
-                        "stats": {
-                            "mean": 0.5722321428571429,
-                            "std": 0.21312211453449237,
-                            "min": 0.1,
-                            "max": 0.95,
-                            "q1": 0.45,
-                            "median": 0.55,
-                            "q3": 0.7
-                        },
-                        "outliers": {
-                            "count": 0,
-                            "lower_bound": 0.07500000000000012,
-                            "upper_bound": 1.0749999999999997
-                        }
-                    },
-                    "precipitacion_mm": {
-                        "status": "VALID",
-                        "type": "float",
-                        "stats": {
-                            "mean": 11.775535714285715,
-                            "std": 14.69384871121633,
-                            "min": 0.0,
-                            "max": 136.1,
-                            "q1": 0.0,
-                            "median": 7.0,
-                            "q3": 19.1
-                        },
-                        "outliers": {
-                            "count": 93,
-                            "lower_bound": -28.650000000000002,
-                            "upper_bound": 47.75
-                        }
-                    },
-                    "tipo_lluvia": {
-                        "status": "VALID",
-                        "type": "string",
-                        "summary": {
-                            "unique_values": 4,
-                            "top_frequencies": {
-                                "Ninguna": {
-                                    "count": 1397,
-                                    "percentage": 0.41577380952380955
-                                },
-                                "Moderada": {
-                                    "count": 1232,
-                                    "percentage": 0.36666666666666664
-                                },
-                                "Fuerte": {
-                                    "count": 579,
-                                    "percentage": 0.17232142857142857
-                                },
-                                "Ligera": {
-                                    "count": 152,
-                                    "percentage": 0.04523809523809524
-                                }
-                            }
-                        }
-                    },
-                    "evento_macro": {
-                        "status": "VALID",
-                        "type": "string",
-                        "summary": {
-                            "unique_values": 3,
-                            "top_frequencies": {
-                                "Neutral": {
-                                    "count": 1479,
-                                    "percentage": 0.4401785714285714
-                                },
-                                "La Ni\u00f1a": {
-                                    "count": 1212,
-                                    "percentage": 0.3607142857142857
-                                },
-                                "El Ni\u00f1o": {
-                                    "count": 669,
-                                    "percentage": 0.19910714285714284
-                                }
-                            }
-                        }
-                    },
-                    "es_dia_lluvioso": {
-                        "status": "VALID",
-                        "type": "int",
-                        "stats": {
-                            "mean": 0.5842261904761905,
-                            "std": 0.49292825420879655,
-                            "min": 0.0,
-                            "max": 1.0,
-                            "q1": 0.0,
-                            "median": 1.0,
-                            "q3": 1.0
-                        },
-                        "outliers": {
-                            "count": 0,
-                            "lower_bound": -1.5,
-                            "upper_bound": 2.5
-                        }
-                    },
-                    "created_at": {
-                        "status": "VALID",
-                        "type": "datetime",
-                        "stats": {
-                            "min": "2026-03-13 20:56:13.622436+00:00",
-                            "max": "2026-03-15 06:48:04.684934+00:00",
-                            "nat_increase": 0
-                        }
-                    },
-                    "updated_at": {
-                        "status": "VALID",
-                        "type": "datetime",
-                        "stats": {
-                            "min": "2026-03-13 20:56:13.622436+00:00",
-                            "max": "2026-03-15 06:48:04.684934+00:00",
-                            "nat_increase": 0
-                        }
-                    }
-                },
-                "semantic_hash": "c58a79a1f3afd3eb094fe70de38d9035ecc45145b10f7eff08eca267dc5e330b"
+                "reused": true
             },
             "deep_health_audit": {
                 "samples": {
                     "head": [
                         {
                             "fecha": "2017-01-01",
-                            "temperatura_media": 21.0,
-                            "probabilidad_lluvia": 0.5,
-                            "precipitacion_mm": 0.0,
+                            "created_at": "2026-03-13T20:56:13.622436+00:00",
+                            "updated_at": "2026-03-13T20:56:13.622436+00:00",
                             "tipo_lluvia": "Ninguna",
                             "evento_macro": "La Ni\u00f1a",
                             "es_dia_lluvioso": 0,
-                            "created_at": "2026-03-13T20:56:13.622436+00:00",
-                            "updated_at": "2026-03-13T20:56:13.622436+00:00"
+                            "precipitacion_mm": 0.0,
+                            "temperatura_media": 21.0,
+                            "probabilidad_lluvia": 0.5
                         },
                         {
                             "fecha": "2017-01-02",
-                            "temperatura_media": 20.7,
-                            "probabilidad_lluvia": 0.5,
-                            "precipitacion_mm": 0.0,
+                            "created_at": "2026-03-13T20:56:13.622436+00:00",
+                            "updated_at": "2026-03-13T20:56:13.622436+00:00",
                             "tipo_lluvia": "Ninguna",
                             "evento_macro": "La Ni\u00f1a",
                             "es_dia_lluvioso": 0,
-                            "created_at": "2026-03-13T20:56:13.622436+00:00",
-                            "updated_at": "2026-03-13T20:56:13.622436+00:00"
+                            "precipitacion_mm": 0.0,
+                            "temperatura_media": 20.7,
+                            "probabilidad_lluvia": 0.5
                         },
                         {
                             "fecha": "2017-01-03",
-                            "temperatura_media": 20.7,
-                            "probabilidad_lluvia": 0.5,
-                            "precipitacion_mm": 13.8,
+                            "created_at": "2026-03-13T20:56:13.622436+00:00",
+                            "updated_at": "2026-03-13T20:56:13.622436+00:00",
                             "tipo_lluvia": "Moderada",
                             "evento_macro": "La Ni\u00f1a",
                             "es_dia_lluvioso": 1,
-                            "created_at": "2026-03-13T20:56:13.622436+00:00",
-                            "updated_at": "2026-03-13T20:56:13.622436+00:00"
+                            "precipitacion_mm": 13.8,
+                            "temperatura_media": 20.7,
+                            "probabilidad_lluvia": 0.5
                         }
                     ],
                     "tail": [
                         {
-                            "fecha": "2026-03-12",
-                            "temperatura_media": 21.8,
-                            "probabilidad_lluvia": 0.5,
-                            "precipitacion_mm": 0.0,
-                            "tipo_lluvia": "Ninguna",
-                            "evento_macro": "Neutral",
-                            "es_dia_lluvioso": 0,
-                            "created_at": "2026-03-13T21:23:49.427483+00:00",
-                            "updated_at": "2026-03-13T21:23:49.427483+00:00"
-                        },
-                        {
                             "fecha": "2026-03-13",
-                            "temperatura_media": 21.4,
-                            "probabilidad_lluvia": 0.5,
-                            "precipitacion_mm": 0.0,
+                            "created_at": "2026-03-14T06:37:51.426379+00:00",
+                            "updated_at": "2026-03-14T06:37:51.426379+00:00",
                             "tipo_lluvia": "Ninguna",
                             "evento_macro": "Neutral",
                             "es_dia_lluvioso": 0,
-                            "created_at": "2026-03-14T06:37:51.426379+00:00",
-                            "updated_at": "2026-03-14T06:37:51.426379+00:00"
+                            "precipitacion_mm": 0.0,
+                            "temperatura_media": 21.4,
+                            "probabilidad_lluvia": 0.5
                         },
                         {
                             "fecha": "2026-03-14",
-                            "temperatura_media": 20.6,
-                            "probabilidad_lluvia": 0.5,
-                            "precipitacion_mm": 0.0,
+                            "created_at": "2026-03-15T06:48:04.684934+00:00",
+                            "updated_at": "2026-03-15T06:48:04.684934+00:00",
                             "tipo_lluvia": "Ninguna",
                             "evento_macro": "Neutral",
                             "es_dia_lluvioso": 0,
-                            "created_at": "2026-03-15T06:48:04.684934+00:00",
-                            "updated_at": "2026-03-15T06:48:04.684934+00:00"
+                            "precipitacion_mm": 0.0,
+                            "temperatura_media": 20.6,
+                            "probabilidad_lluvia": 0.5
+                        },
+                        {
+                            "fecha": "2026-03-15",
+                            "created_at": "2026-03-16T07:08:14.867029+00:00",
+                            "updated_at": "2026-03-16T07:08:14.867029+00:00",
+                            "tipo_lluvia": "Ninguna",
+                            "evento_macro": "Neutral",
+                            "es_dia_lluvioso": 0,
+                            "precipitacion_mm": 0.0,
+                            "temperatura_media": 22.9,
+                            "probabilidad_lluvia": 0.5
                         }
                     ],
                     "random": [
                         {
-                            "fecha": "2024-06-26",
-                            "temperatura_media": 22.8,
-                            "probabilidad_lluvia": 0.45,
-                            "precipitacion_mm": 0.0,
+                            "fecha": "2026-01-18",
+                            "created_at": "2026-03-13T20:56:15.359525+00:00",
+                            "updated_at": "2026-03-13T20:56:15.359525+00:00",
                             "tipo_lluvia": "Ninguna",
                             "evento_macro": "Neutral",
                             "es_dia_lluvioso": 0,
-                            "created_at": "2026-03-13T20:56:15.163345+00:00",
-                            "updated_at": "2026-03-13T20:56:15.163345+00:00"
+                            "precipitacion_mm": 0.0,
+                            "temperatura_media": 21.4,
+                            "probabilidad_lluvia": 0.3
                         },
                         {
-                            "fecha": "2022-10-13",
-                            "temperatura_media": 21.0,
-                            "probabilidad_lluvia": 0.95,
-                            "precipitacion_mm": 11.0,
-                            "tipo_lluvia": "Moderada",
-                            "evento_macro": "La Ni\u00f1a",
-                            "es_dia_lluvioso": 1,
-                            "created_at": "2026-03-13T20:56:14.867023+00:00",
-                            "updated_at": "2026-03-13T20:56:14.867023+00:00"
-                        },
-                        {
-                            "fecha": "2025-10-21",
-                            "temperatura_media": 22.0,
-                            "probabilidad_lluvia": 0.8,
-                            "precipitacion_mm": 15.5,
+                            "fecha": "2025-09-10",
+                            "created_at": "2026-03-13T20:56:15.359525+00:00",
+                            "updated_at": "2026-03-13T20:56:15.359525+00:00",
                             "tipo_lluvia": "Moderada",
                             "evento_macro": "Neutral",
                             "es_dia_lluvioso": 1,
-                            "created_at": "2026-03-13T20:56:15.359525+00:00",
-                            "updated_at": "2026-03-13T20:56:15.359525+00:00"
+                            "precipitacion_mm": 10.8,
+                            "temperatura_media": 22.6,
+                            "probabilidad_lluvia": 0.65
+                        },
+                        {
+                            "fecha": "2021-11-13",
+                            "created_at": "2026-03-13T20:56:14.560199+00:00",
+                            "updated_at": "2026-03-13T20:56:14.560199+00:00",
+                            "tipo_lluvia": "Moderada",
+                            "evento_macro": "La Ni\u00f1a",
+                            "es_dia_lluvioso": 1,
+                            "precipitacion_mm": 16.9,
+                            "temperatura_media": 21.1,
+                            "probabilidad_lluvia": 0.95
                         }
                     ]
                 },
+                "time_analysis": {
+                    "frequency": "D",
+                    "has_leakage": false,
+                    "gaps_detected": [],
+                    "freshness_lag_days": 1,
+                    "invalid_dates_count": 0
+                },
                 "quality_metrics": {
+                    "null_pct": 0.0,
                     "null_columns": [],
+                    "invalid_dates": 0,
                     "duplicate_rows": 0,
                     "sentinel_values_found": {},
                     "custom_rules_violations": [],
-                    "invalid_dates": 0,
-                    "null_pct": 0.0
-                },
-                "time_analysis": {
-                    "frequency": "D",
-                    "gaps_detected": [],
-                    "freshness_lag_days": 1,
-                    "has_leakage": false,
-                    "invalid_dates_count": 0
+                    "custom_rules_violations_raw": []
                 },
                 "health_dimensions": {
                     "business": 100.0,
-                    "continuity": 100.0,
+                    "cleaning": 100.0,
                     "integrity": 100.0,
-                    "cleaning": 100.0
+                    "continuity": 100.0
                 }
             },
             "data_preview": {}
@@ -670,7 +530,7 @@
             "strategy": "SKIP",
             "metrics": {
                 "row_count": 111,
-                "semantic_hash": "ef5555b5377f2025e602761a668b17dc58dec251dd9327fafb3b34dc521bef2f",
+                "semantic_hash": "b65fa378a9a14d86ddd8d44448d99c48dc96e821deba29d02fd1f8e669223a66",
                 "health_score": 100,
                 "duplicates_found": 0
             },
@@ -722,22 +582,22 @@
                     ],
                     "random": [
                         {
-                            "fecha": "2022-07-01",
+                            "fecha": "2026-03-01",
+                            "created_at": "2026-03-13T20:56:18.421406+00:00",
+                            "updated_at": "2026-03-13T20:56:18.421406+00:00",
+                            "inflacion_mensual_ipc": 0.3167
+                        },
+                        {
+                            "fecha": "2019-02-01",
+                            "created_at": "2026-03-13T20:56:18.421406+00:00",
+                            "updated_at": "2026-03-13T20:56:18.421406+00:00",
+                            "inflacion_mensual_ipc": 0.3167
+                        },
+                        {
+                            "fecha": "2022-02-01",
                             "created_at": "2026-03-13T20:56:18.421406+00:00",
                             "updated_at": "2026-03-13T20:56:18.421406+00:00",
                             "inflacion_mensual_ipc": 1.0933
-                        },
-                        {
-                            "fecha": "2017-12-01",
-                            "created_at": "2026-03-13T20:56:18.421406+00:00",
-                            "updated_at": "2026-03-13T20:56:18.421406+00:00",
-                            "inflacion_mensual_ipc": 0.3408
-                        },
-                        {
-                            "fecha": "2017-03-01",
-                            "created_at": "2026-03-13T20:56:18.421406+00:00",
-                            "updated_at": "2026-03-13T20:56:18.421406+00:00",
-                            "inflacion_mensual_ipc": 0.3408
                         }
                     ]
                 },
@@ -754,7 +614,8 @@
                     "invalid_dates": 0,
                     "duplicate_rows": 0,
                     "sentinel_values_found": {},
-                    "custom_rules_violations": []
+                    "custom_rules_violations": [],
+                    "custom_rules_violations_raw": []
                 },
                 "health_dimensions": {
                     "business": 100.0,

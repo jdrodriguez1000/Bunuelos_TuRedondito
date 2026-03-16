@@ -67,7 +67,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState({
     totalRows: 0,
     avgScore: 0,
-    readiness: 0,
+    avgBusinessScore: 0,
     alarms: 0,
     status: "Healthy"
   });
@@ -140,11 +140,11 @@ export default function Dashboard() {
         const avgScore = count > 0 
           ? auditData!.reduce((acc, curr) => acc + (curr.health_score || 0), 0) / count 
           : 0;
+        
+        const avgBusinessScore = latestEntries.length > 0
+          ? latestEntries.reduce((acc, curr) => acc + (curr.health_report?.health_dimensions?.business || 100), 0) / latestEntries.length
+          : 0;
 
-        // Calculate Forecast Readiness (Weighted health of Sales and Inventory - the core for IA)
-        const coreTables = ['usr_ventas', 'usr_inventario_detallado'];
-        const coreEntries = latestEntries.filter(e => coreTables.includes(e.table_name));
-        const readiness = calculateReadiness(coreEntries);
 
 
         // Calculate total rows from the latest execution batch instead of a strict calendar check
@@ -158,7 +158,7 @@ export default function Dashboard() {
         setStats({
           totalRows,
           avgScore: Math.round(avgScore),
-          readiness,
+          avgBusinessScore: Math.round(avgBusinessScore),
           alarms: allViolations.length,
           status: count === 0 ? "No Data" : avgScore > 90 ? "Excellent" : avgScore > 70 ? "Warning" : "Critical"
         });
@@ -226,12 +226,15 @@ export default function Dashboard() {
           <div className="text-xs text-secondary mt-2">Critical contract violations</div>
         </div>
 
+
         <div className="stat-card">
           <div className="stat-label flex items-center gap-2">
-            <ShieldCheck size={16} className="text-primary" /> Forecast Readiness
+            <Database size={16} style={{ color: stats.avgBusinessScore < 95 ? '#ff4d4d' : 'var(--primary)' }} /> Business Score
           </div>
-          <div className="stat-value">{stats.readiness}%</div>
-          <div className="text-xs text-secondary mt-2">IA Model training eligibility</div>
+          <div className="stat-value" style={{ color: stats.avgBusinessScore < 95 ? '#ff4d4d' : 'inherit' }}>
+            {stats.avgBusinessScore}%
+          </div>
+          <div className="text-xs text-secondary mt-2">Business rules compliance</div>
         </div>
       </section>
 
@@ -251,7 +254,7 @@ export default function Dashboard() {
                 <th>Rows</th>
                 <th>Load Type</th>
                 <th>Freshness</th>
-                <th>Timestamp</th>
+                <th>Health Score</th>
               </tr>
             </thead>
             <tbody>
@@ -305,8 +308,18 @@ export default function Dashboard() {
                         {lag === 0 ? 'Live' : `${lag}d lag`}
                       </span>
                     </td>
-                    <td className="text-secondary" style={{ fontSize: '0.75rem' }}>
-                      {new Date(entry.created_at).toLocaleDateString()} {new Date(entry.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                    <td>
+                      <div className="flex flex-col items-center">
+                        <span 
+                          className={`badge ${entry.health_score > 90 ? 'success' : entry.health_score > 70 ? 'warning' : 'error'}`}
+                          style={{ padding: '2px 8px', fontSize: '0.7rem', fontWeight: 600 }}
+                        >
+                          {entry.health_score > 90 ? 'Excellent' : entry.health_score > 70 ? 'Good' : 'Critical'}
+                        </span>
+                        <span className="text-secondary" style={{ fontSize: '0.65rem', marginTop: '2px' }}>
+                          {entry.health_score.toFixed(1)}%
+                        </span>
+                      </div>
                     </td>
                   </tr>
                 );
