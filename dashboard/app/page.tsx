@@ -94,7 +94,8 @@ export default function Dashboard() {
           'usr_inventario_detallado', 
           'usr_ventas', 
           'usr_clima_diario', 
-          'usr_ipc_mensual'
+          'usr_ipc_mensual',
+          'usr_salario_minimo_anual'
         ];
         
         const latestEntries: AuditEntry[] = [];
