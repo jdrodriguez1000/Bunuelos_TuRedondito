@@ -1,0 +1,5 @@
+outs:
+- md5: f9e93c95a613e72ae919a64f0edbd61e
+  size: 4373
+  hash: md5
+  path: usr_ipc_mensual_ae1f0833.parquet

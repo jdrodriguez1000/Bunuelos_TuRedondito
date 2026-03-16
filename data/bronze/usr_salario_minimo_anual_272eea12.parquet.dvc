@@ -1,0 +1,5 @@
+outs:
+- md5: 093165775193af13e5feecb81f602633
+  size: 3604
+  hash: md5
+  path: usr_salario_minimo_anual_272eea12.parquet
