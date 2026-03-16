@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.6.0...Bunuelos_TuRedondito-v0.7.0) (2026-03-16)
+
+
+### Features
+
+* **dashboard:** refine health scoring logic and enhance dashboard UI status indicators ([5466e0e](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/5466e0ea66110eca9a15b171d744d90e2bc31848))
+* **dashboard:** refine health scoring logic and enhance dashboard UI… ([62ea982](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/62ea982e472177a1aa502a31a209d2200355bbd9))
+
 ## [0.6.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.5.0...Bunuelos_TuRedondito-v0.6.0) (2026-03-16)
 
 
