@@ -28,11 +28,12 @@ Todo agente debe respetar estas reglas antes de iniciar cualquier fase:
 ## 📜 Cimientos Estratégicos (Nivel Alto)
 - 📊 **Reportes Ejecutivos**: [[LATEST]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/executive/phase_01_01_executive_latest.md) | [[HISTORY]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/executive/history/)
 - 🧭 **Project Charter**: [[VER DOCUMENTO]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/artifacts/Project_Charter.md) (Visión, Objetivos y Roadmap)
+- ⚖️ **Deuda Técnica**: [[LOG]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/technical_debt/technical_debt.md) (Riesgos y Mejora Continua)
 *   **Plan General:** [[PLAN-MASTER]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/artifacts/project_plan.md) (Cronograma y Estados de Fase)
 
 ---
 
-## 🏗️ FASE 01: Kickoff and Implementation | (IN PROGRESS)
+## 🏗️ FASE 01: Kickoff and Implementation | (COMPLETED)
 
 ### F01-01: Infrastructure and Documentation (COMPLETED)
 *   **Descripción:** Configuración del entorno maestro, protocolos de agente y estructura física del proyecto.
@@ -49,7 +50,7 @@ Todo agente debe respetar estas reglas antes de iniciar cualquier fase:
     *   Especificación: [[SPEC-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f01_02_spec.md) (COMPLETED)
     *   Plan de Imp.: [[IMPL-F01-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f01_02_impl_plan.md) (COMPLETED)
 
-### F01-03: Data Contract Creation (IN PROGRESS)
+### F01-03: Data Contract Creation (COMPLETED)
 *   **Descripción:** Definición y validación de esquemas técnicos.
 *   **Documentación:**
     *   Requerimientos: [[REQ-F01-03]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f01_03_requirements.md) (COMPLETED)
@@ -58,21 +59,21 @@ Todo agente debe respetar estas reglas antes de iniciar cualquier fase:
 
 ---
 
-## 🏗️ FASE 02: Minimum Viable Product (MVP) - Endogenous Variables | (PENDING)
+## 🏗️ FASE 02: Minimum Viable Product (MVP) - Endogenous Variables | (COMPLETED)
 
-### F02-01: Data Contract Validation (PENDING)
+### F02-01: Data Contract Validation (COMPLETED)
 *   **Descripción:** Implementación del Guardrail de Calidad y sistema de activación selectiva de fuentes para blindar el pipeline.
 *   **Documentación:**
     *   Requerimientos: [[REQ-F02-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f02_01_requirements.md)
     *   Especificación: [[SPEC-F02-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f02_01_spec.md)
     *   Plan de Imp.: [[IMPL-F02-01]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f02_01_impl_plan.md)
 
-### F02-02: Data Loading (PENDING)
-*   **Descripción:** Ingesta distribuida y segura de las fuentes maestras de datos desde Supabase.
+### F02-02: Physical Ingestion & Bronze Storage (COMPLETED)
+*   **Descripción:** Ingesta masiva, paginación de Supabase, auditoría de salud (Gaps/Freshness) y persistencia inmutable en Bronce (Parquet + DVC).
 *   **Documentación:**
     *   Requerimientos: [[REQ-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/reqs/f02_02_requirements.md)
     *   Especificación: [[SPEC-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/specs/f02_02_spec.md)
-    *   Plan de Imp.: [[IMPL-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f02_02_impl_plan.md)
+    *   Plan de Imp.: [[PLAN-F02-02]](file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/docs/plans/f02_02_plan.md)
 
 ---
 

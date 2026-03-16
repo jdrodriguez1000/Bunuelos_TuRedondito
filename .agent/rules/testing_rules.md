@@ -2,7 +2,7 @@
 
 ## 1. Identificación y Control (Metadata)
 *   **Título:** Reglas de Testing y Aseguramiento de Calidad
-*   **Versión:** v1.2.0
+*   **Versión:** v1.3.0
 *   **Estado:** Oficial / Aprobado
 *   **Trazabilidad:** Alineado con el Project Charter de **Bunuelos_TuRedondito**.
 *   **Objetivo:** Garantizar la integridad del código y la exactitud de los pronósticos mediante validaciones jerárquicas.
@@ -39,3 +39,6 @@
 - **Contenido Requerido**:
     - Metadatos (Fecha, Fase, Agente).
     - Detalle por prueba (Nombre, Estado, Mensaje de Error).
+
+## 🚑 6. Resiliencia y Recuperación
+- **QA_001 (Validación Bootstrap/Hito 0):** Los flujos críticos (Ingestión, Auditoría) deben contar con pruebas funcionales que simulen una base de datos de gobernanza vacía. El sistema debe ser capaz de autocurarse o iniciar en modo limitado sin fallos de ejecución (`UnboundLocalError` u otros).

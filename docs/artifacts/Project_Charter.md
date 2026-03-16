@@ -6,9 +6,17 @@
 | **Cliente** | Bunuelos SAS |
 | **Consultor / Ejecutor** | Sabbia Solutions & Services SAS (Triple S) |
 | **Fecha de Creación** | 13 de Marzo de 2026 |
-| **Estado** | Borrador Inicial |
+| **Estado** | Baseline v1.1.0 |
 
 ---
+
+## Registro de Cambios (Change Log)
+| Fecha | Versión | ID Elemento | Descripción | Autor |
+| :--- | :--- | :--- | :--- | :--- |
+| 2026-03-13 | v1.0.0 | N/A | Creación inicial del Charter. | Triple S |
+| 2026-03-15 | v1.1.0 | [RULE-TECH] | Actualización de reglas técnicas para gobernanza evolutiva (CR_03_15_1754). | Antigravity |
+| 2026-03-15 | v1.1.0 | [RULE-QA] | Adición de validación mandatoria de escenarios Bootstrap (CR_03_15_1754). | Antigravity |
+
 
 ## 1. Propósito y Justificación del Proyecto
 Bunuelos SAS enfrenta desafíos críticos en la gestión de su inventario debido a la inexactitud en los pronósticos de demanda de su producto estrella: el buñuelo. Actualmente, el proceso depende de un comité de expertos con criterios inconsistentes y alta influencia jerárquica, lo que resulta en:
@@ -40,8 +48,8 @@ El desarrollo se estructurará en 6 fases incrementales:
 
 ### Phase 2: Minimum Viable Product (MVP) - Endogenous Variables
 *Basado en datos históricos de ventas y series temporales puras.*
-1. Validación de contrato.
-2. Carga de datos.
+1. [x] Validación de contrato.
+2. [x] Carga de datos.
 3. Preprocesamiento.
 4. Análisis Exploratorio de Datos (EDA).
 5. Ingeniería de características.

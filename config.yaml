@@ -34,9 +34,12 @@ tables:
   usr_ventas: "usr_ventas"
   usr_inventario_detallado: "usr_inventario_detallado"
   usr_clima_diario: "usr_clima_diario"
+  usr_ipc_mensual: "usr_ipc_mensual"
+  usr_salario_minimo_anual: "usr_salario_minimo_anual"
   # Tablas de Sistema (Auditoría)
   sys_validation_contract: "sys_validation_contract"
   sys_pipeline_execution: "sys_pipeline_execution"
+  sys_ingestion_audit: "sys_ingestion_audit"
 
 # GOBERNANZA DEL CONTRATO
 contract:
@@ -69,4 +72,84 @@ paths:
   
   cloud_storage:
     s3_tickets_prefix: "pipeline_tickets/stage_load"
-    s3_ticket_name: "load_report.json"
+# ------------------------------------------------------------------------------
+# 4. INGESTION & HEALTH RULES (Stage 2.2)
+# ------------------------------------------------------------------------------
+bronze:
+  path: "data/bronze"
+
+ingestion:
+  tables:
+    # Reglas para Inventario Detallado
+    usr_inventario_detallado:
+      frequency: "D"
+      sentinels: [-999, -99.9, -1, "NaN", "nan", "NULL", "null", "None", "", " "]
+      custom_rules:
+        - name: demanda_teorica
+          expression: "demanda_teorica_total == ventas_reales_totales + unidades_agotadas"
+        - name: positividad_inventario
+          expression: "all_fields >= 0"
+        - name: lbs_disponibles
+          expression: "abs(lbs_totales_disponibles - (lbs_iniciales_bodega + lbs_recibidas)) <= 0.01"
+        - name: ventas_reales_total_composicion
+          expression: "ventas_reales_totales == ventas_reales_pagas + ventas_reales_bonificadas"
+    
+    # Reglas para Ventas
+    usr_ventas:
+      frequency: "D"
+      sentinels: [-999, -99.9, "NaN", "nan", "NULL", "null", "None", "", " "]
+      custom_rules:
+        - name: balance_unidades
+          expression: "abs(unidades_totales - (unidades_pagas + unidades_bonificadas)) <= 0.01"
+        - name: regla_promocion
+          expression: "es_promocion == 1 => unidades_pagas == unidades_bonificadas"
+        - name: positividad_campos
+          expression: "all_fields >= 0"
+    
+    # Reglas para Clima
+    usr_clima_diario:
+      frequency: "D"
+      sentinels: [-999, -99.9, "NaN", "nan", "NULL", "null", "None", "unknown", "N/A"]
+      custom_rules:
+        - name: consistencia_sin_lluvia
+          expression: "precipitacion_mm == 0 => (tipo_lluvia == 'Ninguna' and es_dia_lluvioso == 0)"
+        - name: categorias_tipo_lluvia
+          expression: "tipo_lluvia in ['Ninguna', 'Moderada', 'Fuerte', 'Ligera']"
+        - name: categorias_evento_macro
+          expression: "evento_macro in ['La Niña', 'Neutral', 'El Niño']"
+        - name: binario_es_dia_lluvioso
+          expression: "es_dia_lluvioso in [0, 1]"
+        - name: positividad_clima
+          expression: "(temperatura_media >= 0) and (precipitacion_mm >= 0) and (probabilidad_lluvia >= 0)"
+
+    # Reglas para IPC
+    usr_ipc_mensual:
+      frequency: "M"
+      sentinels: [-999, -99.9, "NaN", "nan", "NULL", "null", "None", "", " "]
+      custom_rules:
+        - name: positividad_ipc
+          expression: "inflacion_mensual_ipc >= 0"
+        - name: rango_ipc
+          expression: "inflacion_mensual_ipc <= 100" # Asumiendo un límite superior razonable para inflación
+
+    # Reglas para Salario Mínimo
+    usr_salario_minimo_anual:
+      frequency: "Y"
+      sentinels: [-999, -99.9, "NaN", "nan", "NULL", "null", "None", "", " "]
+      custom_rules:
+        - name: positividad_smlv
+          expression: "smlv >= 0"
+
+
+  # MODELO DE SCORING PONDERADO (Weighted Aggregate Score)
+  scoring:
+    weights:
+      business_rules: 0.50   # Crítico: Reglas de negocio (50%)
+      time_continuity: 0.20  # Relevante: Gaps y Freshness (20%)
+      data_integrity: 0.20   # Relevante: Nulos y Fechas Corruptas (20%)
+      data_cleaning: 0.10    # Higiene: Duplicados y Centinelas (10%)
+    penalties:
+      per_custom_rule_violation_pct: 2.0  # % de regs que fallan * este factor
+      per_gap_day: 5                     # Puntos menos por cada día de hueco
+      per_invalid_date: 10               # Puntos menos por cada fecha NaT
+      max_null_pct_allowed: 1.0           # Umbral de tolerancia de nulos

@@ -2,7 +2,7 @@
   {
     "type": "Unitaria",
     "status": "PASSED",
-    "timestamp": "2026-03-15T17:51:58.296440",
+    "timestamp": "2026-03-15T14:45:31.884418",
     "details": "Resultados de la suite Unitaria",
     "summary": {
       "total": 25,
@@ -116,7 +116,7 @@
   {
     "type": "Integraci\u00f3n",
     "status": "PASSED",
-    "timestamp": "2026-03-15T17:51:58.296440",
+    "timestamp": "2026-03-15T14:45:31.884418",
     "details": "Resultados de la suite Integraci\u00f3n",
     "summary": {
       "total": 6,
@@ -153,19 +153,19 @@
   },
   {
     "type": "Funcional",
-    "status": "PASSED",
-    "timestamp": "2026-03-15T17:51:58.296440",
+    "status": "FAILED",
+    "timestamp": "2026-03-15T14:45:31.884418",
     "details": "Resultados de la suite Funcional",
     "summary": {
       "total": 2,
-      "passed": 2,
-      "failed": 0,
+      "passed": 1,
+      "failed": 1,
       "skipped": 0
     },
     "tests": [
       {
         "name": "tests/functional/test_load_pipeline_e2e.py::test_hito_0_bootstrap_flow",
-        "status": "PASSED"
+        "status": "FAILED"
       },
       {
         "name": "tests/functional/test_load_pipeline_e2e.py::test_blocked_by_invalid_contract",
