@@ -1,0 +1,5 @@
+outs:
+- md5: 27a7c94cafde3cc2f7c6eba8b7fb4ea0
+  size: 37891
+  hash: md5
+  path: usr_ventas_7f99de55.parquet
