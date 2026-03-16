@@ -10,6 +10,8 @@ jobs:
   run-pipeline:
     name: Execute Daily Load
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,6 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Configure Git Identity
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
       - name: Configure DVC Remote
         env:
           DVC_ACCESS_KEY_ID: ${{ secrets.SUPABASE_S3_ACCESS_KEY_ID }}
@@ -41,13 +48,23 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_S3_ENDPOINT: ${{ secrets.SUPABASE_S3_ENDPOINT }}
+          SUPABASE_S3_ACCESS_KEY_ID: ${{ secrets.SUPABASE_S3_ACCESS_KEY_ID }}
+          SUPABASE_S3_SECRET_ACCESS_KEY: ${{ secrets.SUPABASE_S3_SECRET_ACCESS_KEY }}
+          SUPABASE_S3_REGION: ${{ secrets.SUPABASE_S3_REGION }}
+          SUPABASE_S3_BUCKET: ${{ secrets.SUPABASE_S3_BUCKET }}
         run: |
           python main.py load
 
       - name: Auto-commit DVC changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .dvc/*.dvc data/bronze/.gitignore
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore: auto-update dvc pointers [skip ci]"
-          git push origin main
+          # Registrar punteros DVC y configuraciones de ignorados
+          git add "**/*.dvc"
+          git add "**/bronze/.gitignore" || true
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "chore: auto-update dvc pointers [skip ci]"
+            git push origin HEAD
+          else
+            echo "No changes to commit (DVC pointers are up to date)"
+          fi

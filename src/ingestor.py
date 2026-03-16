@@ -386,8 +386,9 @@ class UnifiedIngestor:
             # 1. dvc add
             subprocess.run(["dvc", "add", file_path], check=True, capture_output=True)
             
-            # 2. dvc push
-            subprocess.run(["dvc", "push", file_path], check=True, capture_output=True)
+            # 2. dvc push (Sincroniza con S3 usando el remoto configurado)
+            # El push global evita que DVC busque un archivo dvc.yaml que no existe en este proyecto
+            subprocess.run(["dvc", "push", "-r", "storage"], check=True, capture_output=True)
             
             # 3. Verificación Real de Existencia en el Remoto (SPEC-F02-02)
             check_cmd = ["dvc", "status", "-r", "storage", file_path]

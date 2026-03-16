@@ -23,11 +23,13 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # --- DATA & DVC ---
-# Ignorar los datos reales, DVC se encarga de ellos
-/data/*
-!/data/.gitkeep
-!/data/**/*.dvc
-!/data/**/.gitignore
+# Ignorar los datos reales (Parquet) pero permitir metadatos de DVC
+data/**/*.parquet
+data/**/*.csv
+data/**/*.json
+!data/**/.gitignore
+!data/**/*.dvc
+!data/.gitkeep
 
 # Excluir cache de DVC
 .dvc/cache/
