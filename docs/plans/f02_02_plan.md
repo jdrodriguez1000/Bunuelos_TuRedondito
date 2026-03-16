@@ -21,17 +21,16 @@ Desplegar un motor de ingesta (`ingestor.py`) capaz de descargar N tablas de Sup
 *   **[TSK-22-03]** Crear script SQL de migración para la tabla `sys_ingestion_audit`.
 
 ### Tanda 2: Motor de Ingesta (Core Logic)
-*   **[TSK-22-04]** Implementar `src/ingestor.py`: Crear `IngestorManager` con lógica de paginación (lotes de 1000).
-*   **[TSK-22-05]** Desarrollo en `src/ingestor.py`: Módulo de hashing semántico para persistencia Parquet inmutable.
-*   **[TSK-22-06]** Implementar lógica de cálculo para:
-    *   Data Leakage (Point-in-time check).
-    *   Freshness Score (Lag vs Frequency).
-    *   Gap Analysis (Calendar Fill Check).
+*   **[TSK-22-04]** Implementar `src/ingestor.py`: Crear `UnifiedIngestor` con lógica de paginación y **Motor de Estrategia Inteligente** (Incremental/Skip por punteros).
+*   **[TSK-22-05]** Desarrollo en `src/ingestor.py`: Inmutabilidad vía hashing semántico y soporte de **Bootstrap (Hito 0)** con validación de emergencia.
+*   **[TSK-22-06]** Desarrollar **Motor de Scoring Ponderado**:
+    *   Cálculo de 4 dimensiones (Business, Continuity, Integrity, Cleaning).
+    *   Detección de Gaps, Freshness, Leakage y reglas dinámicas vía `df.eval`.
 
 ### Tanda 3: Auditoría e Integración Dashboard
-*   **[TSK-22-07]** Implementar la generación del `health_report` (JSONB) con muestras Head/Tail/Random.
-*   **[TSK-22-08]** Integrar `ingestor.py` en el orquestador principal `main.py load`.
-*   **[TSK-22-09]** Validar la actualización de `sys_pipeline_execution` al finalizar cada carga.
+*   **[TSK-22-07]** Implementar la generación del `health_report` con muestras y **Dimensiones de Salud** para Dashboard.
+*   **[TSK-22-08]** Integrar orquestación en `main.py`: Gestión de **Master Execution UUID** y Gatekeeper Global.
+*   **[TSK-22-09]** Validar doble persistencia (Local y Cloud Ticket) con trazabilidad en `sys_pipeline_execution`.
 
 ---
 

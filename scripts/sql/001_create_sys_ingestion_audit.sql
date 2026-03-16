@@ -9,7 +9,7 @@
 -- 1. Crear la tabla de auditoría
 CREATE TABLE IF NOT EXISTS public.sys_ingestion_audit (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    execution_id UUID NOT NULL, -- FK a futuro para trazabilidad de pipeline
+    execution_id UUID NOT NULL REFERENCES public.sys_pipeline_execution(id) ON DELETE CASCADE, -- Vínculo oficial con el orquestador
     table_name TEXT NOT NULL,
     semantic_hash TEXT NOT NULL UNIQUE,
     status TEXT NOT NULL CHECK (status IN ('SUCCESS', 'FAILED', 'NO_DATA', 'WARNING')),

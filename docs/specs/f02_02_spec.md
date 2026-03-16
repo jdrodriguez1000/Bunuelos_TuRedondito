@@ -15,16 +15,18 @@ El componente central es `src/ingestor.py`, un orquestador de bajo nivel diseña
 ### Diagrama de Flujo (Lógica de Ingesta):
 ```mermaid
 graph TD
-    A[Inicio: load command] --> B{Validación Contract SUCCESS?}
-    B -- NO --> C[Terminar: Error Log]
+    A[Inicio: main.py load] --> AA{¿Hito 0 / Primera Carga?}
+    AA -- SI --> AB[Validación Estructural Emergencia]
+    AA -- NO --> B{Gatekeeper: Contrato VALID?}
+    B -- NO --> C[Terminar: BLOCKED_BY_GATEKEEPER]
     B -- SI --> D[Iterar Tablas del Contrato]
-    D --> E[Consultar config.yaml: Frecuencia/Reglas]
-    E --> F[Descarga Paginada: Batches 1000]
-    F --> G[Cálculo de KPIs de Salud: Gaps/Leakage/Freshness]
-    G --> H[Generar Parquet Inmutable: hash semántico]
-    H --> I[DVC Push / S3 Sync]
-    I --> J[Actualizar sys_ingestion_audit: JSONB]
-    J --> K[Actualizar sys_pipeline_execution]
+    D --> E[Análisis de Estrategia: FULL/INC/SKIP]
+    E --> F[Descarga Paginada o Carga Local]
+    F --> G[Cálculo de Health Score Ponderado: 4 Pilares]
+    G --> H[Generar Parquet: hash semántico]
+    H --> I[DVC Push / Confirmación Remota]
+    I --> J[Log sys_ingestion_audit: JSONB + Dimensions]
+    J --> K[Actualizar sys_pipeline_execution: Master UUID]
     K --> L[Fin: Reporte Consolidado]
 ```
 
@@ -79,9 +81,22 @@ Esta tabla en Supabase es el contrato de comunicación con el Dashboard en Node.
     "gaps_detected": ["2026-01-15"],
     "has_leakage": false,
     "freshness_lag_days": 1
+  },
+  "health_dimensions": {
+    "business": 100.0,
+    "continuity": 95.0,
+    "integrity": 100.0,
+    "cleaning": 100.0
   }
 }
 ```
+
+### 3.3 Algoritmo de Health Scoring Ponderado `[RSK-22]`
+El puntaje final se calcula mediante la agregación ponderada de 4 dimensiones:
+1.  **Reglas de Negocio (50%)**: Penalización por cada registro que falla las `custom_rules` de `config.yaml`.
+2.  **Continuidad Temporal (20%)**: Penalización por cada día de Gap detectado y lag de frescura > 7 días.
+3.  **Integridad Técnica (20%)**: Penalización por porcentaje de nulos y fechas inválidas (NaT).
+4.  **Higiene de Datos (10%)**: Penalización por filas duplicadas y detección de valores centinela.
 
 ### 3.3 Alineación con TypeScript (Frontend Next.js)
 El objeto `health_report` se ajustará al siguiente esquema (Interface TS) para garantizar la seguridad de tipos en el Dashboard:

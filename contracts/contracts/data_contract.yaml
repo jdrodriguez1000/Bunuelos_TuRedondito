@@ -60,7 +60,7 @@ data_sources:
       updated_at: "datetime"
 
   - name: "weather"
-    enabled: false
+    enabled: true
     db_table: "usr_clima_diario"
     primary_key: "fecha"
     description: "Variables exógenas climáticas y eventos macro de influencia en la demanda."
@@ -74,3 +74,26 @@ data_sources:
       es_dia_lluvioso: "int"
       created_at: "datetime"
       updated_at: "datetime"
+  
+  - name: "ipc"
+    enabled: true
+    db_table: "usr_ipc_mensual"
+    primary_key: "fecha"
+    description: "Datos históricos de inflación mensual."
+    schema:
+      fecha: "datetime"
+      inflacion_mensual_ipc: "float"
+      created_at: "datetime"
+      updated_at: "datetime"
+  
+  - name: "smlv"
+    enabled: false
+    db_table: "usr_salario_minimo_anual"
+    primary_key: "fecha"
+    description: "Datos históricos de salario mínimo mensual legal vigente."
+    schema:
+      fecha: "datetime"
+      smlv: "int"
+      created_at: "datetime"
+      updated_at: "datetime"
+

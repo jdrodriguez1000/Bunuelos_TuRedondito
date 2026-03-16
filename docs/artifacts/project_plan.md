@@ -10,7 +10,7 @@ This document outlines the execution roadmap for the demand forecasting system o
 | Phase | Description | Status | Start Date | End Date |
 | :--- | :--- | :--- | :--- | :--- |
 | **01** | **Kickoff and Implementation** | **COMPLETED** | 2026-03-13 | 2026-03-14 |
-| **02** | **Minimum Viable Product (MVP) - Endogenous Variables** | **IN PROGRESS** | 2026-03-14 | - |
+| **02** | **Minimum Viable Product (MVP) - Endogenous Variables** | **COMPLETED** | 2026-03-14 | 2026-03-15 |
 | **03** | **Robustness - Calendar** | Pending | - | - |
 | **04** | **Controllable Variables - Commercial & Marketing** | Pending | - | - |
 | **05** | **External Non-Controllable Variables - Macro & Weather** | Pending | - | - |
@@ -80,12 +80,13 @@ This document outlines the execution roadmap for the demand forecasting system o
 - [x] **[T-2.2-01] Cloud-DVC Sync**: Configurar entorno DVC para sincronización obligatoria con storage remoto.
 - [x] **[T-2.2-02] Configuración Estratégica**: Actualizar `config.yaml` con frecuencias y reglas custom.
 - [x] **[T-2.2-03] Auditoría SQL**: Crear script de migración para la tabla `sys_ingestion_audit`.
-- [x] **[T-2.2-04] Ingestor Core (`src/ingestor.py`)**: Implementar motor de descarga por batches (Supabase Bypass).
-- [x] **[T-2.2-05] Hashing Inmutable (`src/ingestor.py`)**: Desarrollo de módulo de hashing semántico para persistencia Parquet.
-- [x] **[T-2.2-06] Algoritmos de Salud**: Implementación de lógica para Gaps, Leakage y Freshness en el ingestor.
-- [x] **[T-2.2-07] Dashboard Payload**: Generación de `health_report` (JSONB) con muestras (Head/Tail/Random).
-- [x] **[T-2.2-08] Orquestación Load**: Integración de `src/ingestor.py` en `main.py`.
-- [x] **[T-2.2-09] Cierre de Etapa**: Sistematización de Lecciones Aprendidas y Reporte Ejecutivo Wow Factor.
+- [x] **[T-2.2-04] Ingestor Core (`src/ingestor.py`)**: Implementar `UnifiedIngestor` con descarga por batches y **Estrategia Inteligente** (FULL/INC/SKIP).
+- [x] **[TSK-22-05] Hashing Inmutable & Hito 0**: Inmutabilidad vía hashing semántico y soporte de **Bootstrap** con validación de emergencia.
+- [x] **[TSK-22-06] Motor de Scoring Ponderado**: Implementación de lógica de auditoría basada en **4 Pilares** (Business, Continuity, Integrity, Cleaning).
+- [x] **[TSK-22-07] Dashboard Payload**: Generación de `health_report` (JSONB) con muestras y dimensiones de salud.
+- [x] **[T-2.2-08] Orquestación Load**: Integración en `main.py` con gestión de **Master Execution UUID** y Gatekeeper Global.
+- [x] **[T-2.2-09] QA Pipeline**: Suite de pruebas funcionales E2E con cobertura total de escenarios de éxito y bloqueo (33 pruebas certificadas).
+- [x] **[T-2.2-10] Cierre de Etapa**: Sistematización de Lecciones Aprendidas (LL_022-LL_025) y Reporte Ejecutivo Wow Factor (Fase 2.2).
 
 ### Other Stages (Abbreviated)
 *   **Stage 2.3: Training and Modeling (PENDING)**
@@ -111,4 +112,4 @@ This document outlines the execution roadmap for the demand forecasting system o
 5. **M5 (MVP Entregado):** Dashboard funcional y reporte ejecutivo.
 
 ---
-*Last Edited: 2026-03-14*
+*Last Edited: 2026-03-15 (Baseline v1.1.0)*

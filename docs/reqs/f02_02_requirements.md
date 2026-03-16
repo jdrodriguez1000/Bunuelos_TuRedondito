@@ -23,9 +23,11 @@ Este documento detalla los requerimientos para la **Ingesta Física** de datos d
 ### ✅ Qué está INCLUIDO (In Scope)
 *   **[REQ-22-01] Descarga Multi-Tabla Dinámica**: Descarga de tablas con flag `true` en el contrato que superaron la validación técnica.
 *   **[REQ-22-02] Gestión de Batches (Pagination)**: Superación del límite de 1000 registros de la API de Supabase vía paginación por lotes.
-*   **[REQ-22-03] Persistencia en Bronce (Parquet)**: Grabado de archivos inmutables `tabla_{semantic_hash}.parquet` en la carpeta `data/bronce/`.
+*   **[REQ-22-03] Motor de Estrategia Inteligente**: Optimización de carga mediante comparación de punteros remotos (Row Count) para decidir entre carga `FULL`, `INCREMENTAL` (delta local) o `SKIP` (sin cambios).
 *   **[REQ-22-04] Sincronización Remota Obligatoria**: Verificación de carga exitosa en el storage remoto (S3 vía DVC) antes de marcar éxito.
 *   **[REQ-22-05] Configuración en `config.yaml`**: Frecuencias (D, M, Y), centinelas y reglas de negocio custom centralizadas.
+*   **[REQ-22-06] Scoring Ponderado Multi-Pilar**: Cálculo de un Health Score (0-100) basado en 4 pilares: Reglas de Negocio (50%), Continuidad (20%), Integridad (20%) e Higiene (10%).
+*   **[REQ-22-07] Detección de Hito 0 (Bootstrap)**: Capacidad de auto-detectar estados de base de datos vacía para disparar validaciones estructurales de emergencia antes de la primera ingesta.
 
 ### ❌ Qué está EXCLUIDO (Out of Scope)
 *   Limpieza de datos (Null imputation) o transformaciones de formato de fecha (corresponden a la etapa Silver).

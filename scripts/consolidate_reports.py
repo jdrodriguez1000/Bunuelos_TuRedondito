@@ -2,65 +2,78 @@ import json
 import os
 from datetime import datetime
 
-RAW_REPORT = "tests/reports/tests_report_raw.json"
-OFFICIAL_REPORT = "tests/reports/tests_report.json"
-
 def consolidate():
-    if not os.path.exists(RAW_REPORT):
-        print(f"Error: {RAW_REPORT} no encontrado.")
+    raw_path = 'tests/reports/tests_report_raw.json'
+    output_path = 'tests/reports/tests_report.json'
+    history_dir = 'tests/reports/history'
+    
+    if not os.path.exists(raw_path):
+        print(f"Error: {raw_path} no encontrado.")
         return
 
-    with open(RAW_REPORT, 'r') as f:
+    with open(raw_path, 'r', encoding='utf-8') as f:
         raw_data = json.load(f)
 
+    # Transformar al formato oficial [RULE-QA]
     consolidated = []
     
-    # Agrupar por tipo (unit, integration) basándonos en la ruta
+    # Clasificar tests por tipo basándose en su ruta
     suites = {
-        "Unitaria": [t for t in raw_data.get('tests', []) if 'tests/unit' in t['nodeid']],
-        "Integración": [t for t in raw_data.get('tests', []) if 'tests/integration' in t['nodeid']]
+        "Unitaria": [],
+        "Integración": [],
+        "Funcional": []
     }
-
-    for suite_name, tests in suites.items():
-        if not tests:
-            continue
-            
-        suite_status = "PASSED"
-        test_list = []
+    
+    for test in raw_data.get('tests', []):
+        nodeid = test.get('nodeid', '')
+        status = test.get('outcome', 'failed').upper()
+        test_info = {"name": nodeid, "status": status}
         
-        for t in tests:
-            raw_outcome = t.get('outcome', 'failed').upper()
-            status = raw_outcome if raw_outcome in ["PASSED", "FAILED", "SKIPPED"] else "FAILED"
+        if 'unit' in nodeid:
+            suites["Unitaria"].append(test_info)
+        elif 'integration' in nodeid:
+            suites["Integración"].append(test_info)
+        elif 'functional' in nodeid:
+            suites["Funcional"].append(test_info)
+
+    for suite_type, tests in suites.items():
+        if tests:
+            passed = sum(1 for t in tests if t['status'] == 'PASSED')
+            failed = sum(1 for t in tests if t['status'] == 'FAILED')
+            skipped = sum(1 for t in tests if t['status'] == 'SKIPPED')
             
-            if status == "FAILED":
-                suite_status = "FAILED"
+            suite_status = "PASSED" if failed == 0 else "FAILED"
             
-            test_list.append({
-                "name": t['nodeid'],
-                "status": status,
-                "duration": round(t.get('setup', {}).get('duration', 0) + 
-                                 t.get('call', {}).get('duration', 0) + 
-                                 t.get('teardown', {}).get('duration', 0), 4)
+            consolidated.append({
+                "type": suite_type,
+                "status": suite_status,
+                "timestamp": datetime.now().isoformat(),
+                "details": f"Resultados de la suite {suite_type}",
+                "summary": {
+                    "total": len(tests),
+                    "passed": passed,
+                    "failed": failed,
+                    "skipped": skipped
+                },
+                "tests": tests
             })
 
-        consolidated.append({
-            "type": suite_name,
-            "status": suite_status,
-            "timestamp": datetime.now().isoformat(),
-            "details": f"Resultados de la suite {suite_name}",
-            "summary": {
-                "total": len(tests),
-                "passed": len([t for t in test_list if t['status'] == "PASSED"]),
-                "failed": len([t for t in test_list if t['status'] == "FAILED"]),
-                "skipped": len([t for t in test_list if t['status'] == "SKIPPED"])
-            },
-            "tests": test_list
-        })
-
-    with open(OFFICIAL_REPORT, 'w', encoding='utf-8') as f:
-        json.dump(consolidated, f, indent=4)
+    # Guardar Latest
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(consolidated, f, indent=2)
     
-    print(f"✅ Reporte consolidado creado en: {OFFICIAL_REPORT}")
+    # Doble Persistencia: Histórico (ya manejado por el workflow de powershell en este caso, 
+    # pero podemos hacerlo aquí para ser redundantes o dejar que el workflow lo haga)
+    # Según workflow, el .ps1 lo hace. Pero RULE-QA dice "Automatización del archivado... tras cada ejecución".
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    os.makedirs(history_dir, exist_ok=True)
+    history_path = os.path.join(history_dir, f"tests_report_{timestamp}.json")
+    with open(history_path, 'w', encoding='utf-8') as f:
+        json.dump(consolidated, f, indent=2)
+
+    print(f"✅ Reporte consolidado y archivado: {output_path}")
 
 if __name__ == "__main__":
     consolidate()

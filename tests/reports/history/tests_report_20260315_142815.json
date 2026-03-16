@@ -1,0 +1,54 @@
+[
+  {
+    "type": "Unitaria",
+    "status": "PASSED",
+    "timestamp": "2026-03-15T14:28:15.253479",
+    "details": "Resultados de la suite Unitaria",
+    "tests": [
+      {
+        "name": "tests/unit/test_ingestor.py::test_ingestor_initialization",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/unit/test_ingestor.py::test_calculate_null_pct",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/unit/test_ingestor.py::test_check_sentinels",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/unit/test_ingestor.py::test_analyze_time_series_invalid_dates",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/unit/test_ingestor.py::test_backoff_retry_logic",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/unit/test_ingestor.py::test_backoff_retry_exhausted",
+        "status": "PASSED"
+      }
+    ]
+  },
+  {
+    "type": "Integraci\u00f3n",
+    "status": "PASSED",
+    "timestamp": "2026-03-15T14:28:15.253479",
+    "details": "Resultados de la suite Integraci\u00f3n",
+    "tests": [
+      {
+        "name": "tests/integration/test_ingestor_integration.py::test_supabase_connectivity",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/integration/test_ingestor_integration.py::test_ingestor_remote_count",
+        "status": "PASSED"
+      },
+      {
+        "name": "tests/integration/test_ingestor_integration.py::test_ingestor_last_audit_state",
+        "status": "PASSED"
+      }
+    ]
+  }
+]

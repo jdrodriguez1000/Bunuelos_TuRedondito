@@ -1,15 +1,9 @@
 [
   {
     "type": "Unitaria",
-    "status": "PASSED",
-    "timestamp": "2026-03-15T17:51:58.296440",
+    "status": "FAILED",
+    "timestamp": "2026-03-15T14:26:19.991973",
     "details": "Resultados de la suite Unitaria",
-    "summary": {
-      "total": 25,
-      "passed": 24,
-      "failed": 0,
-      "skipped": 1
-    },
     "tests": [
       {
         "name": "tests/unit/test_data_contract.py::test_contract_syntax",
@@ -69,11 +63,11 @@
       },
       {
         "name": "tests/unit/test_ingestor.py::test_check_sentinels",
-        "status": "PASSED"
+        "status": "FAILED"
       },
       {
         "name": "tests/unit/test_ingestor.py::test_analyze_time_series_invalid_dates",
-        "status": "PASSED"
+        "status": "FAILED"
       },
       {
         "name": "tests/unit/test_ingestor.py::test_backoff_retry_logic",
@@ -116,14 +110,8 @@
   {
     "type": "Integraci\u00f3n",
     "status": "PASSED",
-    "timestamp": "2026-03-15T17:51:58.296440",
+    "timestamp": "2026-03-15T14:26:19.991973",
     "details": "Resultados de la suite Integraci\u00f3n",
-    "summary": {
-      "total": 6,
-      "passed": 6,
-      "failed": 0,
-      "skipped": 0
-    },
     "tests": [
       {
         "name": "tests/integration/test_cloud_certification.py::test_publish_ticket_success",
@@ -147,28 +135,6 @@
       },
       {
         "name": "tests/integration/test_ingestor_integration.py::test_ingestor_last_audit_state",
-        "status": "PASSED"
-      }
-    ]
-  },
-  {
-    "type": "Funcional",
-    "status": "PASSED",
-    "timestamp": "2026-03-15T17:51:58.296440",
-    "details": "Resultados de la suite Funcional",
-    "summary": {
-      "total": 2,
-      "passed": 2,
-      "failed": 0,
-      "skipped": 0
-    },
-    "tests": [
-      {
-        "name": "tests/functional/test_load_pipeline_e2e.py::test_hito_0_bootstrap_flow",
-        "status": "PASSED"
-      },
-      {
-        "name": "tests/functional/test_load_pipeline_e2e.py::test_blocked_by_invalid_contract",
         "status": "PASSED"
       }
     ]
