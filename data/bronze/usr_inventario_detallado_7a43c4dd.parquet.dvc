@@ -1,0 +1,5 @@
+outs:
+- md5: d413d375231fb3341f633b05616d4fd7
+  size: 158391
+  hash: md5
+  path: usr_inventario_detallado_7a43c4dd.parquet

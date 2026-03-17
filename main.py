@@ -334,9 +334,9 @@ class Orchestrator:
                     return "FULL (Partial Refresh)" # Novedades en secundarias, core estable
                 return "FULL (Refresh/Re-load)"
             
-            # B. Si no hubo FULL pero hubo carga INCREMENTAL
-            if "INCREMENTAL" in strategies:
-                return "INCREMENTAL"
+            # B. Si no hubo FULL pero hubo carga INCR
+            if "INCR" in strategies:
+                return "INCR"
             
             # C. Si absolutamente todas las tablas se saltaron
             return "NO_NEW_DATA"

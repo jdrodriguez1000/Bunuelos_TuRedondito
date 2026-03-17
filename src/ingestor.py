@@ -186,7 +186,7 @@ class UnifiedIngestor:
                     strategy = "SKIP"
                     logger.info(f"   ✅ Sin cambios detectados (Puntero: {current_count} filas). Saltando descarga.")
                 elif last_audit and current_count > last_row_count:
-                    strategy = "INCREMENTAL"
+                    strategy = "INCR"
                     logger.info(f"   📈 Detectadas {current_count - last_row_count} nuevas filas. Iniciando descarga incremental.")
                 else: # last_audit is None or current_count < last_row_count (data loss or first load)
                     strategy = "FULL"
@@ -217,22 +217,40 @@ class UnifiedIngestor:
                 df_base = pd.DataFrame()
                 start_row = 0
                 
-                if strategy == "INCREMENTAL":
+                if strategy == "INCR":
                     # Intentar cargar lo que ya tenemos en Bronce para completar el DF
                     # Si no hay archivo local, bajamos todo (Refresh forzado)
-                    local_files = [f for f in os.listdir(self.bronze_path) if f.startswith(f"{real_table_name}_")]
-                    if local_files:
-                        # Cargar el más reciente
-                        local_files.sort(reverse=True)
+                    # 1. Intentar buscar el archivo exacto según el hash de la última auditoría
+                    last_hash = last_audit.get('semantic_hash')
+                    target_file = None
+                    
+                    if last_hash and last_hash != "N/A":
+                        # El sistema persiste con los primeros 8 caracteres del hash
+                        short_hash = last_hash[:8]
+                        potential_file = f"{real_table_name}_{short_hash}.parquet"
+                        if os.path.exists(os.path.join(self.bronze_path, potential_file)):
+                            target_file = potential_file
+
+                    # 2. Si no se encontró por hash exacto, buscar por prefijo descartando .dvc
+                    if not target_file:
+                        local_files = [f for f in os.listdir(self.bronze_path) 
+                                       if f.startswith(f"{real_table_name}_") and f.endswith(".parquet")]
+                        if local_files:
+                            # Ordenar por fecha de modificación para tomar el más reciente real
+                            local_files.sort(key=lambda x: os.path.getmtime(os.path.join(self.bronze_path, x)), reverse=True)
+                            target_file = local_files[0]
+
+                    if target_file:
                         try:
-                            df_base = pd.read_parquet(os.path.join(self.bronze_path, local_files[0]))
+                            df_base = pd.read_parquet(os.path.join(self.bronze_path, target_file))
                             start_row = len(df_base)
-                            logger.info(f"   📂 Base local cargada: {len(df_base)} filas. Descargando delta desde fila {start_row}...")
-                        except:
-                            logger.warning("   ⚠️ No se pudo leer base local. Iniciando descarga completa.")
+                            logger.info(f"   📂 Base local cargada ({target_file}): {len(df_base)} filas. Descargando delta desde fila {start_row}...")
+                        except Exception as e:
+                            logger.warning(f"   ⚠️ No se pudo leer base local {target_file}: {str(e)}. Iniciando descarga completa.")
                             strategy = "FULL"
                             start_row = 0
                     else:
+                        logger.warning(f"   ⚠️ No se encontró base física para {real_table_name}. Forzando FULL download.")
                         strategy = "FULL"
                         start_row = 0
 

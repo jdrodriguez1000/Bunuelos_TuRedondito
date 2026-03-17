@@ -2,4 +2,4 @@ outs:
 - md5: 7a8554bebda4f73d21ff2582bf7336aa
   size: 158312
   hash: md5
-  path: usr_inventario_detallado_918eba52.parquet
+  path: usr_inventario_detallado_e57649b3.parquet
