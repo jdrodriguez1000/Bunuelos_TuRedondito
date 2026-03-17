@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.9.0...Bunuelos_TuRedondito-v0.10.0) (2026-03-17)
+
+
+### Features
+
+* **pipeline:** rename INCREMENTAL to INCR and fix bootstrap logic ([873e244](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/873e2442db771bc868d40c8178f9fbc2b90c9034))
+* **pipeline:** unify load terminology to INCR and optimize bootstrap sync logic ([24a3f9e](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/24a3f9e13b445b43afead2fb8b7f01bffed63ce6))
+
 ## [0.9.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.8.0...Bunuelos_TuRedondito-v0.9.0) (2026-03-17)
 
 
