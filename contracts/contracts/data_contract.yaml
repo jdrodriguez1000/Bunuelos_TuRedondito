@@ -7,7 +7,7 @@
 
 data_sources:
   - name: "inventory"
-    enabled: true
+    enabled: true 
     db_table: "usr_inventario_detallado"
     primary_key: "fecha"
     description: "Fuente maestra de inventario que contiene la variable objetivo del proyecto."
@@ -60,7 +60,7 @@ data_sources:
       updated_at: "datetime"
 
   - name: "weather"
-    enabled: false
+    enabled: true
     db_table: "usr_clima_diario"
     primary_key: "fecha"
     description: "Variables exógenas climáticas y eventos macro de influencia en la demanda."
@@ -76,7 +76,7 @@ data_sources:
       updated_at: "datetime"
   
   - name: "ipc"
-    enabled: false
+    enabled: true
     db_table: "usr_ipc_mensual"
     primary_key: "fecha"
     description: "Datos históricos de inflación mensual."
@@ -87,7 +87,7 @@ data_sources:
       updated_at: "datetime"
   
   - name: "smlv"
-    enabled: false
+    enabled: true
     db_table: "usr_salario_minimo_anual"
     primary_key: "fecha"
     description: "Datos históricos de salario mínimo mensual legal vigente."

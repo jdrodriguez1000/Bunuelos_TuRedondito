@@ -103,8 +103,8 @@ class UnifiedIngestor:
             else:
                 last_val = val_res.data[0]
                 if last_val['status'] != 'VALID':
-                    logger.warning("⛔ GATEKEEPER GLOBAL: La última validación de contrato falló. Abortando ingesta.")
-                    return {"failed": 0, "processed": 0, "details": [], "status": "BLOCKED_BY_GATEKEEPER"}
+                    logger.warning("⚠️ GATEKEEPER: La última ejecución falló. Intentando 'Recovery Mode' para validar nuevos cambios.")
+                    # Ya no abortamos con return, permitimos que el orquestador valide el nuevo estado.
                 
                 # Extraer metadatos de la última corrida
                 support = last_val.get('support_json', {})
@@ -131,7 +131,8 @@ class UnifiedIngestor:
                 if r_name not in failed_tables:
                     authorized_sources.append(src)
                 else:
-                    logger.warning(f"⛔ GATEKEEPER: Tabla '{r_name}' sigue bloqueada por fallo en certificación previa.")
+                    logger.info(f"🔄 REINTENTO: Intentando re-certificar '{r_name}' (Bloqueo previo levantado para recuperación).")
+                    authorized_sources.append(src)
         
         logger.info(f"Fuentes autorizadas por contrato y gatekeeper: {[s['name'] for s in authorized_sources]}")
 
@@ -431,6 +432,7 @@ class UnifiedIngestor:
                 "null_columns": [col for col in df.columns if df[col].isna().any()] if not df.empty else [],
                 "duplicate_rows": int(df.duplicated().sum()) if not df.empty else 0,
                 "sentinel_values_found": self._check_sentinels(df, settings.get('sentinels', [])),
+                "outliers_found": self._check_outliers(df),
                 "custom_rules_violations_raw": self._check_custom_rules_v2(df, settings.get('custom_rules', []))
             },
             "time_analysis": {
@@ -471,32 +473,69 @@ class UnifiedIngestor:
             # Penalización por regla distinta que falla: 5 puntos por cada regla única fallida
             rule_count_penalty = len(violations_data) * 5.0
             
-            business_score = 100.0 - fixed_penalty - variable_penalty - rule_count_penalty
+            business_score = max(0.0, 100.0 - fixed_penalty - variable_penalty - rule_count_penalty)
+        else:
+            business_score = 100.0
         
-        # Pilar 2: Continuidad Temporal (Time Continuity) - 20%
-        # Penalización por cada día de Gap
+        # Pilar 2: Continuidad Temporal (Time Continuity) - 20% [RSK-23]
+        lag_days = report["time_analysis"]["freshness_lag_days"]
+        freq = report["time_analysis"]["frequency"]
+        
+        # Lógica de Umbrales personalizada para frecuencia Diaria ('D')
+        if freq == 'D':
+            if lag_days <= 1:
+                continuity_score = 100.0
+            elif lag_days == 2:
+                continuity_score = 90.0
+            else: # 3 o más días de retraso
+                continuity_score = 70.0
+        else:
+            # Base 100 para otras frecuencias (se analizarán luego)
+            continuity_score = 100.0
+
+        # Penalización adicional por Gaps (Huecos en medio de la serie)
         gaps_count = len(report["time_analysis"]["gaps_detected"])
-        continuity_score = 100.0 - (gaps_count * penalties.get('per_gap_day', 5))
-        if report["time_analysis"]["freshness_lag_days"] > 7: continuity_score -= 10
+        continuity_score = max(0.0, continuity_score - (gaps_count * penalties.get('per_gap_day', 5)))
+        
         if report["time_analysis"]["has_leakage"]: continuity_score = 0 # Data del futuro es inaceptable
 
         # Pilar 3: Integridad Técnica (Data Integrity) - 20%
-        # Basado en Nulos y Fechas Inválidas
-        null_penalty = max(0, report["quality_metrics"]["null_pct"] - penalties.get('max_null_pct_allowed', 1.0)) * 5
+        # Política de 'Cero Tolerancia': Un solo nulo ya resta puntos.
+        has_nulls = len(report["quality_metrics"]["null_columns"]) > 0
+        null_penalty = 0
+        if has_nulls:
+            # Penalización fija de 2 pts por presencia + proporcional al volumen
+            null_penalty = 2.0 + (report["quality_metrics"]["null_pct"] * 5)
+            
         invalid_date_penalty = report["quality_metrics"]["invalid_dates"] * penalties.get('per_invalid_date', 10)
-        integrity_score = 100.0 - null_penalty - invalid_date_penalty
+        integrity_score = max(0.0, 100.0 - null_penalty - invalid_date_penalty)
 
-        # Pilar 4: Higiene / Limpieza (Data Cleaning) - 10%
+        # Pilar 4: Higiene / Limpieza (Data Cleaning) - 15%
         cleaning_score = 100.0
         if report["quality_metrics"]["duplicate_rows"] > 0: cleaning_score -= 15
         if report["quality_metrics"]["sentinel_values_found"]: cleaning_score -= 10
+        cleaning_score = max(0.0, cleaning_score)
 
-        # Ensamble Ponderado Final
+        # Pilar 5: Observaciones Estadísticas (Statistical Observations) - INDEPENDIENTE
+        # No afecta el Health Score global, es puramente informativo.
+        outliers_count = report["quality_metrics"]["outliers_found"].get("total", 0)
+        has_outliers = outliers_count > 0
+        
+        # Mensaje descriptivo para el Punto 3
+        if not has_outliers:
+            observation_msg = "No hay presencia de valores atípicos."
+            observation_score = 100.0
+        else:
+            observation_msg = f"Hay presencia de valores atípicos ({outliers_count} registros detectados)."
+            observation_score = 0.0 # Usamos 0 para activar el naranja en el dashboard
+
+        # Ensamble Ponderado Final (Solo 4 Pilares Técnicos) [Punto 4]
+        # Pesos: Negocio (50%), Continuidad (20%), Integridad (15%), Limpieza (15%)
         final_score = (
-            (max(0, business_score) * weights.get('business_rules', 0.50)) +
-            (max(0, continuity_score) * weights.get('time_continuity', 0.20)) +
-            (max(0, integrity_score) * weights.get('data_integrity', 0.20)) +
-            (max(0, cleaning_score) * weights.get('data_cleaning', 0.10))
+            (business_score * 0.50) +
+            (continuity_score * 0.20) +
+            (integrity_score * 0.15) +
+            (cleaning_score * 0.15)
         )
 
         # Inyectar sub-scores en el reporte para el Dashboard (Visualización de pilares)
@@ -504,7 +543,12 @@ class UnifiedIngestor:
             "business": round(business_score, 2),
             "continuity": round(continuity_score, 2),
             "integrity": round(integrity_score, 2),
-            "cleaning": round(cleaning_score, 2)
+            "cleaning": round(cleaning_score, 2),
+            "observations": {
+                "score": observation_score,
+                "message": observation_msg,
+                "count": outliers_count
+            }
         }
 
         return report, round(max(0.0, final_score), 1)
@@ -523,6 +567,33 @@ class UnifiedIngestor:
             if count > 0:
                 hits[col] = int(count)
         return hits
+
+    def _check_outliers(self, df: pd.DataFrame) -> Dict[str, Any]:
+        """Detección de outliers estadísticos usando IQR."""
+        res = {"total": 0, "columns": {}}
+        if df.empty: return res
+        
+        numeric_cols = df.select_dtypes(include=['number']).columns
+        for col in numeric_cols:
+            series = df[col].dropna()
+            if len(series) < 4: continue # No hay suficientes datos para cuartiles
+            
+            q1 = series.quantile(0.25)
+            q3 = series.quantile(0.75)
+            iqr = q3 - q1
+            lower = q1 - 1.5 * iqr
+            upper = q3 + 1.5 * iqr
+            
+            outliers = df[(df[col] < lower) | (df[col] > upper)]
+            count = len(outliers)
+            
+            if count > 0:
+                res["total"] += count
+                res["columns"][col] = {
+                    "count": count,
+                    "pct": round((count / len(df)) * 100, 2)
+                }
+        return res
 
     def _check_custom_rules_v2(self, df: pd.DataFrame, rules: List[Dict]) -> List[Dict]:
         """

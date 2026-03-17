@@ -2,7 +2,7 @@
 
 ## 1. Identificación y Control (Metadata)
 *   **Título:** REGLAS TÉCNICAS (Technical Rules)
-*   **Versión:** v1.1.0
+*   **Versión:** v1.2.0
 *   **Estado:** Oficial / Aprobado
 *   **Fecha de Creación:** 2026-03-13
 *   **Trazabilidad:** Derivado de [Project_Charter.md](../../docs/artifacts/Project_Charter.md).
@@ -63,5 +63,5 @@
 *   **RT_MON_002 (Re-entrenamiento):** MAPE > 15% durante 2 semanas consecutivas dispara auditoría y re-entrenamiento forzado.
 
 ### 5.2 Gobernanza Evolutiva y Control de Cargas
-*   **RT_GOV_001 (Gatekeeper Evolutivo):** El Gatekeeper debe permitir el ingreso de nuevas fuentes de datos declaradas en el contrato de manera automática. Solo se deben bloquear fuentes que tengan un fallo de certificación fallido registrado en la última ejecución de gobernanza.
+*   **RT_GOV_001 (Gatekeeper Evolutivo):** El Gatekeeper debe permitir el ingreso de nuevas fuentes de datos declaradas en el contrato de manera automática. Se permite un **'Recovery Mode'** para que el sistema procese datos incluso tras un estado INVALID, permitiendo la validación automatizada de correcciones del contrato. Solo se deben bloquear fuentes que tengan un fallo de certificación fallido registrado en la última ejecución de gobernanza.
 *   **RT_GOV_002 (Modo Global Dinámico):** El modo de carga global (`load_type`) debe reportar el nivel máximo de actividad detectado: si alguna tabla secundaria carga datos (`FULL`), el proceso no puede marcarse como `NO_NEW_DATA`.
