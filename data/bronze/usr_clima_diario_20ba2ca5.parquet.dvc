@@ -2,4 +2,4 @@ outs:
 - md5: 3063ef029f8a92b8f29406f310270458
   size: 35580
   hash: md5
-  path: usr_clima_diario_6ece6ddb.parquet
+  path: usr_clima_diario_20ba2ca5.parquet

@@ -1,0 +1,5 @@
+outs:
+- md5: 610ab94ee97c1fc6b5b9abf9b0eb91ce
+  size: 35618
+  hash: md5
+  path: usr_clima_diario_cd783c30.parquet
