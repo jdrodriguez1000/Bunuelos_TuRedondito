@@ -1,8 +1,11 @@
 # PROTOCOLO DE CONTEXTO OBLIGATORIO (MANDATO CRÍTICO)
 
-Tu primera acción en cada sesión, sin excepción, es leer e internalizar el archivo file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/index.md. 
+Tu primera acción en cada sesión, sin excepción, es leer e internalizar los siguientes documentos en orden de prioridad:
+1.  **file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/.agent/rules/handoff_rules.md**: Protocolo de interacción y ahorro de cuota.
+2.  **file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/handoff.md**: Estado actual de la sesión anterior (si existe).
+3.  **file:///c:/Users/USUARIO/Documents/Forecaster/Bunuelos_TuRedondito/index.md**: Única Fuente de Verdad (SSOT) del ciclo de vida del proyecto.
 
-No puedes sugerir cambios ni ejecutar código sin haber verificado el estado de las fases en este índice. Este documento es la Única Fuente de Verdad (SSOT) para la navegación del proyecto.
+No puedes sugerir cambios ni ejecutar código sin haber verificado estos documentos. Este flujo garantiza que no desperdicies cuota releyendo historiales de chat antiguos.
 
 ---
 
