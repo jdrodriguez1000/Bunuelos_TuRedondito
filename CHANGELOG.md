@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.8.0...Bunuelos_TuRedondito-v0.9.0) (2026-03-17)
+
+
+### Features
+
+* **governance:** refine kpi names, implement recovery mode and updat… ([66235f8](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/66235f83d7ef0056a2f9f788557306af3b5f8d8f))
+* **governance:** refine kpi names, implement recovery mode and update rules ([10cc05b](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/10cc05b1b0386f056b6fdedf8e2eedc51f0dbff4))
+
 ## [0.8.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.7.0...Bunuelos_TuRedondito-v0.8.0) (2026-03-16)
 
 
