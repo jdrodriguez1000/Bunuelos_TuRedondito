@@ -2,8 +2,8 @@ name: Daily Data Pipeline
 
 on:
   schedule:
-    # 07:00 UTC es 02:00 AM Hora Colombia (UTC-5)
-    - cron: '0 7 * * *'
+    # 08:30 UTC es 03:30 AM Hora Colombia (UTC-5)
+    - cron: '30 8 * * *'
   workflow_dispatch: # Permite ejecución manual desde la pestaña Actions
 
 jobs:
