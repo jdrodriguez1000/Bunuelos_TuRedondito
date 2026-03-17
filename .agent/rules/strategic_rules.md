@@ -2,7 +2,7 @@
 
 ## 1. Identificación y Control (Metadata)
 *   **Título del Documento:** REGLAS ESTRATÉGICAS (Strategic Rules)
-*   **Versión:** v1.0.0
+*   **Versión:** v1.0.1
 *   **Estado:** Oficial / Aprobado
 *   **Fecha de Creación:** 2026-03-13
 *   **Trazabilidad:** Derivado de [Project_Charter.md](../../docs/artifacts/Project_Charter.md).
@@ -40,3 +40,4 @@
 ### 5.1 Evolución del Ecosistema
 *   **RE_STRAT_008 (Auditabilidad y Drift):** Todo fallo técnico o desviación de MAPE > 15% debe ser revisado mensualmente. Se seguirá el plan evolutivo de 7 fases sin saltar etapas para garantizar la estabilidad.
 *   **RE_STRAT_009 (Fuente Única de Verdad - SSOT):** La única fuente aceptada para entrenamiento es la data validada en **Supabase** y los artefactos en **S3/DVC**. Prohibido el uso de hojas de cálculo externas o informales.
+*   **RE_STRAT_010 (Claridad y Confianza en KPIs):** Las métricas presentadas en el dashboard deben usar nombres inequívocos que separen dimensiones técnicas de indicadores agregados. El indicador de salud principal se denominará **'Overall Quality'** para evitar confusión con el pilar de 'Integridad de Datos'.

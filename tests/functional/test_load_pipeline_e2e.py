@@ -77,7 +77,7 @@ def test_hito_0_bootstrap_flow(mock_dependencies):
             assert mock_fetch.called, "Debería haber llamado a _fetch_all_data en modo Bootstrap"
             assert mock_log.called, "Debería haber registrado auditoría"
 
-def test_blocked_by_invalid_contract(mock_dependencies):
+def test_recovery_mode_when_invalid_contract(mock_dependencies):
     mock_db, mock_val, client, mock_config, mock_run = mock_dependencies
     
     # Init Ingestor first
@@ -86,7 +86,7 @@ def test_blocked_by_invalid_contract(mock_dependencies):
         
         ingestor = UnifiedIngestor()
         
-        # Simular que el contrato está marcado como INVALID en la DB
+        # Simular que el contrato está marcado como INVALID en la DB (para forzar Modo Recuperación)
         mock_res = MagicMock()
         mock_res.data = [{'status': 'INVALID', 'version': '1.0.0'}]
         ingestor.service_client.table.return_value.select.return_value.order.return_value.limit.return_value.execute.return_value = mock_res
@@ -98,11 +98,13 @@ def test_blocked_by_invalid_contract(mock_dependencies):
         # EJECUCIÓN
         with patch("builtins.open", mock_open(read_data="...")), \
              patch('src.ingestor.yaml.safe_load', return_value=mock_contract), \
-             patch.object(ingestor, '_fetch_all_data') as mock_fetch, \
+             patch.object(ingestor, '_get_last_audit_state', return_value=None), \
+             patch.object(ingestor, '_get_remote_count', return_value=100), \
+             patch.object(ingestor, '_fetch_all_data', return_value=pd.DataFrame([{'a':1}])) as mock_fetch, \
              patch.object(ingestor, '_log_audit') as mock_log:
              
             ingestor.run_full_ingestion(execution_id="exec_456")
             
-            # VERIFICACIÓN
-            assert not mock_fetch.called
-            assert not mock_log.called
+            # VERIFICACIÓN: En modo recuperación, SÍ procede para intentar sanar el sistema
+            assert mock_fetch.called, "SÍ debería llamar a _fetch_all_data en modo Recuperación"
+            assert mock_log.called, "SÍ debería registrar auditoría para intentar sanar el contrato"
