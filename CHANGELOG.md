@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.11.0...Bunuelos_TuRedondito-v0.12.0) (2026-03-18)
+
+
+### Features
+
+* **agent:** update workflows and skills for project lifecycle and st… ([081d78a](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/081d78a3221e39275c15bbc7cd11bff4401e5565))
+* **agent:** update workflows and skills for project lifecycle and strategic communication ([364eaae](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/364eaaea0ead087eb1a374d67e77ede27d5d8421))
+
 ## [0.11.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.10.0...Bunuelos_TuRedondito-v0.11.0) (2026-03-18)
 
 
