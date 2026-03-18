@@ -43,6 +43,12 @@ jobs:
           dvc remote modify storage --local access_key_id "$DVC_ACCESS_KEY_ID"
           dvc remote modify storage --local secret_access_key "$DVC_SECRET_ACCESS_KEY"
 
+      - name: Pull Base Data from DVC (for Incremental Load)
+        run: |
+          # Descarga los archivos .parquet de la última ejecución desde Supabase Storage.
+          # Sin este paso, el runner no tendría la base local y caería a carga FULL cada día.
+          dvc pull || echo "DVC pull warning: algunos archivos pueden no estar disponibles. Continuando..."
+
       - name: Run Data Pipeline (Load)
         env:
           PYTHONPATH: .
@@ -56,18 +62,3 @@ jobs:
           SUPABASE_S3_BUCKET: ${{ secrets.SUPABASE_S3_BUCKET }}
         run: |
           python main.py load
-
-      - name: Auto-commit DVC changes
-        run: |
-          # Agregar archivos .dvc y .gitignore de datos si fueron actualizados
-          git add data/**/*.dvc 2>/dev/null || true
-          git add data/**/.gitignore 2>/dev/null || true
-          git add .gitignore 2>/dev/null || true
-          
-          # Solo hacer commit si hay cambios en el area de stage
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: auto-update dvc pointers [skip ci]"
-            git push origin HEAD
-          else
-            echo "No changes to commit (DVC pointers are up to date)"
-          fi
