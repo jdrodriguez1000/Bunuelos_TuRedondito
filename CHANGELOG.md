@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.11.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.10.0...Bunuelos_TuRedondito-v0.11.0) (2026-03-18)
+
+
+### Features
+
+* **skill:** expand project_lifecycle_expert to 6 execution modes with full traceability ([65722d2](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/65722d2538120a70747acdfdd1832d6d85893511))
+* **skill:** expand project_lifecycle_expert to 6 modes including Task List and Project Plan ([2951cf0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/2951cf02a9768b1c2e3909936d0e4fb811351547))
+
+
+### Bug Fixes
+
+* **workflow:** add dvc pull and remove blocked push to protected main ([fe403ed](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/fe403ed3581ce4fc2363623540f819ac89f94e5d))
+* **workflow:** add dvc pull for incremental load and remove blocked push to main ([8209060](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/commit/8209060a135bb77a44e3858a7420622b9dc8f2fd))
+
 ## [0.10.0](https://github.com/jdrodriguez1000/Bunuelos_TuRedondito/compare/Bunuelos_TuRedondito-v0.9.0...Bunuelos_TuRedondito-v0.10.0) (2026-03-17)
 
 
