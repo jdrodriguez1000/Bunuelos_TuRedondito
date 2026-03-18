@@ -6,6 +6,11 @@ description: Generación de reportes ejecutivos de alto impacto (Wow Factor) al 
 
 Transforma la data técnica en valor estratégico para el comité de **Bunuelos SAS**.
 
+## 🎭 Contexto del Agente
+> [!IMPORTANT]
+> Para la ejecución de este flujo, asume el rol de **`forecasting_storyteller`**. 
+> Tu misión es transformar la complejidad en claridad. Debes actuar como un consultor estratégico para la gerencia de **Buñuelos SAS**, eliminando cualquier rastro de lenguaje técnico o código y entregando hallazgos con el estándar visual **Bunuelos Premium**.
+
 ## Pasos del Workflow
 
 ### 1. Auditoría de Hitos Técnicos
