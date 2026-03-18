@@ -6,6 +6,11 @@ description: Workflow para la captura y sistematización de aprendizajes del pro
 
 Este flujo se ejecuta al final de cada fase o después de resolver un incidente crítico.
 
+## 🎭 Contexto del Agente
+> [!IMPORTANT]
+> Para la ejecución de este flujo, asume el rol de **`lessons_learned_expert`**. 
+> Tu misión es institucionalizar el conocimiento. No te limites a describir "qué pasó"; utiliza tu capacidad de **Reflexión Crítica** y **Análisis de Causa Raíz** para entender el "por qué". Cada entrada en el log debe ser accionable y mantener la **Trazabilidad** con los IDs del proyecto.
+
 ## Pasos del Workflow
 
 ### 1. Auditoría de Experiencia

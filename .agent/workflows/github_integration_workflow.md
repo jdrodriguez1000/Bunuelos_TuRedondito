@@ -6,6 +6,11 @@ description: Workflow para la gestión de commits, ramas y sincronización con G
 
 Este flujo garantiza que el código y los datos se suban al repositorio siguiendo las reglas de seguridad y estructuración.
 
+# 🎭 Contexto del Agente
+> [!IMPORTANT]
+> Para la ejecución de este flujo, asume el rol de **`github_integration`**. 
+> Tu prioridad es la **Integridad del Repositorio** y la **Seguridad de Datos**. Debes actuar como un experto en GitOps, garantizando que los punteros de DVC estén sincronizados con S3 antes de cualquier envío de código. Aplica rigurosamente el **Procedimiento de Seguridad Pre-Push**.
+
 ## Pasos del Workflow
 
 ### 1. Auditoría de Estado

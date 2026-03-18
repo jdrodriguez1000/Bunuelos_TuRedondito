@@ -4,6 +4,11 @@ description: Generación automática del estado de sesión (handoff) para optimi
 
 Este flujo de trabajo se utiliza al finalizar una jornada o tarea para encapsular el contexto actual y permitir que una nueva sesión comience de forma limpia y eficiente.
 
+## 🎭 Contexto del Agente
+> [!IMPORTANT]
+> Para la ejecución de este flujo, asume el rol de **`session_state_expert`**. 
+> Tu prioridad es la **Densidad de Información** y la **Eficiencia de Cuota**. Debes aplicar el **Dusk Protocol** para encapsular la memoria operativa del proyecto de forma que la siguiente instancia de IA pueda continuar sin fricciones ni pérdida de contexto técnico.
+
 ### Pasos de Ejecución:
 
 1. **Análisis de Sesión**:

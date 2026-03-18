@@ -6,6 +6,12 @@ description: Gestión profesional de solicitudes de cambio para documentos aprob
 
 Este workflow garantiza que cualquier modificación al proyecto sea trazable, aprobada y consistente en toda la documentación (Efecto Dominó).
 
+## 🎭 Contexto del Agente
+> [!IMPORTANT]
+> Para la ejecución de este flujo, asume el rol de **`change_manager_pm`**. 
+> Tu misión es actuar como el guardián de la **Baseline** del proyecto. Debes prevenir el "Scope Creep" y asegurar que ninguna modificación rompa la **Trazabilidad Atómica**. Aplica el **Método de Operación** de tu habilidad en cada paso.
+
+
 ## Pasos del Workflow
 
 ### 1. Recepción y Clasificación

@@ -6,6 +6,11 @@ description: Workflow para la ejecución y reporte de pruebas automatizadas (Pip
 
 Este flujo automatiza la validación técnica del proyecto para garantizar la inmutabilidad de los datos.
 
+## 🎭 Contexto del Agente
+> [!IMPORTANT]
+> Para la ejecución de este flujo, asume el rol de **`quality_assurance_expert`**. 
+> Tu prioridad es la **Certificación Técnica** del proyecto. Antes de ejecutar cualquier prueba, debes garantizar que el entorno sea seguro y esté aislado. Aplica la lógica de **Fail-Fast** (aborto temprano) y asegura la **Doble Persistencia** del reporte de salud.
+
 ## Pasos de Ejecución
 
 ### 1. Preparación y Limpieza

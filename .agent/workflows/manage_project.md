@@ -4,28 +4,28 @@ description: Flujo maestro para gestionar el ciclo de vida del proyecto (Charter
 
 # /manage_project
 
-Este workflow automatiza la creación y refinamiento de la documentación core del proyecto utilizando la habilidad `project_lifecycle_expert`.
+Este workflow automatiza la creación y seguimiento de la documentación core del proyecto utilizando la habilidad `project_lifecycle_expert`.
 
 ## Pasos
 
 1. **Identificación de Necesidad**
-   Pregunta al usuario: "¿Qué acción de alto nivel deseas realizar hoy?"
-   - [A] Iniciar un nuevo proyecto (Crear Project Charter).
-   - [B] Generar documentación de una Fase (PRD, Spec o Plan).
+   - **[A] Kickoff:** Crear Project Charter y, acto seguido, el Project Plan (Radar) basado en el Charter.
+   - **[B] Formalización SDD:** Generar PRD, Spec o Plan de una Etapa.
+   - **[C] Ejecución (Task List):** Generar el archivo granular `_task.md`.
+   - **[D] Actualización del Radar:** Reflejar avances en el `project_plan.md`.
 
-2. **Ejecución de Nuevo Proyecto (Modo A: Charter)**
-   Si el usuario elige [A]:
-   - Saluda como el perfil dual (PM & AI PM).
-   - Inicia la entrevista de la Sección 1 según la habilidad `project_lifecycle_expert`.
-   - Continúa secuencialmente hasta generar el documento final.
+2. **Ejecución de Kickoff (Modo A + Modo B)**
+   - Inicia entrevista del Charter.
+   - Una vez aprobado el Charter, **genera automáticamente el `project_plan.md`** extrayendo las fases de la Dimensión 5 del Charter. Si no se especificaron fases ad-hoc, aplica las 7 fases estándar de forecasting.
 
-3. **Ejecución de Documentación de Fase (Modo B, C o D)**
-   Si el usuario elige [B]:
-   - Pregunta la Fase (ej. 1.4) y el tipo de documento (PRD, Spec o Plan).
-   - **Acción Automática:** Lee el archivo `docs/artifacts/Project_Charter.md` para extraer el contexto y las etiquetas de trazabilidad.
-   - Si es un SPEC o PLAN, lee también los documentos previos de esa misma fase para asegurar coherencia técnica.
-   - Aplica el modo correspondiente de la habilidad `project_lifecycle_expert`.
+3. **Ejecución de Documentación (Modo C, D o E)**
+   - Pregunta Etapa y tipo de documento. Valida contra el Charter y el Plan.
 
-4. **Refinamiento y Cierre**
-   - Presenta el borrador en la ubicación de archivo correspondiente (ej: `docs/reqs/`, `docs/specs/`, `docs/plans/`).
-   - Valida con el usuario que la Matriz de Trazabilidad sea correcta.
+4. **Ejecución de Task List (Modo F)**
+   - Genera `docs/tasks/fXX_YY_task.md` con el detalle técnico de la etapa.
+
+5. **Mantenimiento del Radar (Modo B Iterativo)**
+   - Actualiza los estados de las fases en `project_plan.md` y marca la formalización de documentos SDD. **Mantiene el nivel estratégico sin bajar a tareas técnicas.**
+
+6. **Refinamiento**
+   - Asegura versionamiento y trazabilidad de tags.
